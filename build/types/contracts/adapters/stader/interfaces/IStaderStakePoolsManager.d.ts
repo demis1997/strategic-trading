@@ -1,0 +1,46 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../../../common";
+export interface IStaderStakePoolsManagerInterface extends Interface {
+    getFunction(nameOrSignature: "deposit" | "maxDeposit" | "minDeposit" | "paused" | "previewDeposit"): FunctionFragment;
+    encodeFunctionData(functionFragment: "deposit", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "maxDeposit", values?: undefined): string;
+    encodeFunctionData(functionFragment: "minDeposit", values?: undefined): string;
+    encodeFunctionData(functionFragment: "paused", values?: undefined): string;
+    encodeFunctionData(functionFragment: "previewDeposit", values: [BigNumberish]): string;
+    decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "maxDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "minDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "previewDeposit", data: BytesLike): Result;
+}
+export interface IStaderStakePoolsManager extends BaseContract {
+    connect(runner?: ContractRunner | null): IStaderStakePoolsManager;
+    waitForDeployment(): Promise<this>;
+    interface: IStaderStakePoolsManagerInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    deposit: TypedContractMethod<[_receiver: AddressLike], [bigint], "payable">;
+    maxDeposit: TypedContractMethod<[], [bigint], "view">;
+    minDeposit: TypedContractMethod<[], [bigint], "view">;
+    paused: TypedContractMethod<[], [boolean], "view">;
+    previewDeposit: TypedContractMethod<[
+        _assets: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "deposit"): TypedContractMethod<[_receiver: AddressLike], [bigint], "payable">;
+    getFunction(nameOrSignature: "maxDeposit"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "minDeposit"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "paused"): TypedContractMethod<[], [boolean], "view">;
+    getFunction(nameOrSignature: "previewDeposit"): TypedContractMethod<[_assets: BigNumberish], [bigint], "view">;
+    filters: {};
+}
+//# sourceMappingURL=IStaderStakePoolsManager.d.ts.map

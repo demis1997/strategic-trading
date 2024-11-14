@@ -1,0 +1,58 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../../common";
+export interface StaderMockInterface extends Interface {
+    getFunction(nameOrSignature: "deposit" | "maxDeposit" | "minDeposit" | "pause" | "paused" | "previewDeposit" | "setDeposit" | "setMaxDeposit" | "setMinDeposit"): FunctionFragment;
+    encodeFunctionData(functionFragment: "deposit", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "maxDeposit", values?: undefined): string;
+    encodeFunctionData(functionFragment: "minDeposit", values?: undefined): string;
+    encodeFunctionData(functionFragment: "pause", values: [boolean]): string;
+    encodeFunctionData(functionFragment: "paused", values?: undefined): string;
+    encodeFunctionData(functionFragment: "previewDeposit", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "setDeposit", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "setMaxDeposit", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "setMinDeposit", values: [BigNumberish]): string;
+    decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "maxDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "minDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "previewDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setMaxDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setMinDeposit", data: BytesLike): Result;
+}
+export interface StaderMock extends BaseContract {
+    connect(runner?: ContractRunner | null): StaderMock;
+    waitForDeployment(): Promise<this>;
+    interface: StaderMockInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    deposit: TypedContractMethod<[arg0: AddressLike], [bigint], "payable">;
+    maxDeposit: TypedContractMethod<[], [bigint], "view">;
+    minDeposit: TypedContractMethod<[], [bigint], "view">;
+    pause: TypedContractMethod<[pause_: boolean], [void], "nonpayable">;
+    paused: TypedContractMethod<[], [boolean], "view">;
+    previewDeposit: TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
+    setDeposit: TypedContractMethod<[prev: BigNumberish], [void], "nonpayable">;
+    setMaxDeposit: TypedContractMethod<[max: BigNumberish], [void], "nonpayable">;
+    setMinDeposit: TypedContractMethod<[min: BigNumberish], [void], "nonpayable">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "deposit"): TypedContractMethod<[arg0: AddressLike], [bigint], "payable">;
+    getFunction(nameOrSignature: "maxDeposit"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "minDeposit"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "pause"): TypedContractMethod<[pause_: boolean], [void], "nonpayable">;
+    getFunction(nameOrSignature: "paused"): TypedContractMethod<[], [boolean], "view">;
+    getFunction(nameOrSignature: "previewDeposit"): TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "setDeposit"): TypedContractMethod<[prev: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "setMaxDeposit"): TypedContractMethod<[max: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "setMinDeposit"): TypedContractMethod<[min: BigNumberish], [void], "nonpayable">;
+    filters: {};
+}
+//# sourceMappingURL=StaderMock.d.ts.map

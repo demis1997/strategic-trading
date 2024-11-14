@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/BaseAggregatorToken.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> BaseAggregatorToken.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/13</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+&nbsp;
+import {AccessControlUpgradeable} from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
+import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
+&nbsp;
+import {IAggregatorToken} from "./interfaces/IAggregatorToken.sol";
+import {IERC20Errors} from "@openzeppelin/contracts/interfaces/draft-IERC6093.sol";
+&nbsp;
+/// @title BaseAggregatorToken
+abstract contract BaseAggregatorToken is
+    IAggregatorToken,
+    AccessControlUpgradeable,
+    ReentrancyGuardUpgradeable,
+    PausableUpgradeable,
+    IERC20Errors
+{
+    bytes32 public constant TRANSFERS_MANAGER_ROLE = keccak256("TRANSFERS_MANAGER_ROLE");
+    bytes32 public constant FEE_MANAGER_ROLE = keccak256("FEE_MANAGER_ROLE");
+    bytes32 public constant VAULTS_MANAGER_ROLE = keccak256("VAULTS_MANAGER_ROLE");
+    bytes32 public constant VALUATIONS_MANAGER_ROLE = keccak256("VALUATIONS_MANAGER_ROLE");
+    bytes32 public constant LYSADMIN_MANAGER_ROLE = keccak256("LYSADMIN_MANAGER_ROLE");
+&nbsp;
+    // vaults aggregator storage
+    address public underlyingAsset;
+    address public vaultsRegistry;
+    uint256 public maxVaultsPerHolder;
+    uint256 public underlyingValue;
+    address public transferStrategy;
+    address public aggregatorFeeModel;
+&nbsp;
+    // says how many shares from each vault are currently being hold by this contract
+    // invariant: sum off all vaultsshare should be equal to total supply, always
+    // why is this value here? because we can plug underlyingVaults whose shares are out of this aggregator
+    // this is not needed if we asume that  undelying cvaults are only used aggregator
+    mapping (address =&gt; uint256) public vaultsShares;
+&nbsp;
+    /// @notice Allows the contract to receive Ether.
+    receive() external payable {}
+&nbsp;
+    /**
+     * @dev Sets the maximum number of vaults that a single holder can have. Can only be called by accounts with the PORTFOLIO_MANAGER_ROLE.
+     * @param maxVaultsPerHolder_ The new maximum number of vaults per holder.
+     */
+<span class="fstat-no" title="function not covered" >    function setMaxVaultsPerHolder(uint maxVaultsPerHolder_) external onlyRole(LYSADMIN_MANAGER_ROLE) {</span>
+        maxVaultsPerHolder = maxVaultsPerHolder_;
+<span class="cstat-no" title="statement not covered" >        emit MaxVaultsPerHolderSet(maxVaultsPerHolder_);</span>
+    }
+&nbsp;
+    /**
+     * @dev Sets the transfer strategy contract address. Can only be called by accounts with the TRANSFERS_MANAGER_ROLE.
+     * @param transferStrategy_ The address of the new transfer strategy contract.
+     */
+<span class="fstat-no" title="function not covered" >    function setTransferStrategy(address transferStrategy_) external onlyRole(LYSADMIN_MANAGER_ROLE) {</span>
+        transferStrategy = transferStrategy_;
+<span class="cstat-no" title="statement not covered" >        emit TransferStrategySet(transferStrategy_);</span>
+    }
+&nbsp;
+    /**
+     * @dev Sets the aggregator fee model contract address. Can only be called by accounts with the FEE_MANAGER_ROLE.
+     * @param aggregatorFeeModel_ The address of the new aggregator fee model contract.
+     */
+<span class="fstat-no" title="function not covered" >    function setAggregatorFeeModel(address aggregatorFeeModel_) external onlyRole(FEE_MANAGER_ROLE) {</span>
+        aggregatorFeeModel = aggregatorFeeModel_;
+<span class="cstat-no" title="statement not covered" >        emit AggregatorFeeModelSet(aggregatorFeeModel_);</span>
+    }
+&nbsp;
+    /// @notice Pauses the vault's operations, preventing any state-changing functions.
+<span class="fstat-no" title="function not covered" >    function pause() external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _pause()</span>;
+    }
+&nbsp;
+    /// @notice Unpauses the vault's operations, allowing state-changing functions.
+<span class="fstat-no" title="function not covered" >    function unpause() external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _unpause()</span>;
+    }
+&nbsp;
+    /// @dev Internal function to check for zero addresses and revert if necessary.
+<span class="fstat-no" title="function not covered" >    function _checkZeroAddress(address variable_, string memory target_) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (variable_ == address(0)) revert ZeroAddress({target: target_});</span>
+    }
+&nbsp;
+    /// @dev Internal function to check for empty strings and revert if necessary.
+<span class="fstat-no" title="function not covered" >    function _checkEmptyString(string memory variable_, string memory target_) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (bytes(variable_).length == 0) revert EmptyString({target: target_});</span>
+    }
+&nbsp;
+    /// @dev Internal function to check for zero amounts and revert if necessary.
+<span class="fstat-no" title="function not covered" >    function _checkZeroAmount(uint256 variable_, string memory target_) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (variable_ == 0) revert ZeroAmount({target: target_});</span>
+    }
+&nbsp;
+    /**
+     * @dev Validates that the lengths of the vaults and values arrays match.
+     * @param vaults_ The array of vault addresses.
+     * @param values_ The array of values.
+     */
+<span class="fstat-no" title="function not covered" >    function _validateArgumentsLength(address[] calldata vaults_, uint256[] calldata values_) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (vaults_.length != values_.length) {</span>
+            revert DifferentArgumentsLenght();
+        }
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 05 2024 13:25:43 GMT+0300 (Eastern European Summer Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

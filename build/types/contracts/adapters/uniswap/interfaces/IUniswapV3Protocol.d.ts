@@ -1,0 +1,133 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../../../common";
+export declare namespace IUniswapV3Protocol {
+    type ExactOutputParamsStruct = {
+        path: BytesLike;
+        recipient: AddressLike;
+        amountOut: BigNumberish;
+        amountInMaximum: BigNumberish;
+    };
+    type ExactOutputParamsStructOutput = [
+        path: string,
+        recipient: string,
+        amountOut: bigint,
+        amountInMaximum: bigint
+    ] & {
+        path: string;
+        recipient: string;
+        amountOut: bigint;
+        amountInMaximum: bigint;
+    };
+}
+export interface IUniswapV3ProtocolInterface extends Interface {
+    getFunction(nameOrSignature: "exactOutput" | "quoteExactOutput" | "slot0" | "token0"): FunctionFragment;
+    encodeFunctionData(functionFragment: "exactOutput", values: [IUniswapV3Protocol.ExactOutputParamsStruct]): string;
+    encodeFunctionData(functionFragment: "quoteExactOutput", values: [BytesLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "slot0", values?: undefined): string;
+    encodeFunctionData(functionFragment: "token0", values?: undefined): string;
+    decodeFunctionResult(functionFragment: "exactOutput", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "quoteExactOutput", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "slot0", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "token0", data: BytesLike): Result;
+}
+export interface IUniswapV3Protocol extends BaseContract {
+    connect(runner?: ContractRunner | null): IUniswapV3Protocol;
+    waitForDeployment(): Promise<this>;
+    interface: IUniswapV3ProtocolInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    exactOutput: TypedContractMethod<[
+        params: IUniswapV3Protocol.ExactOutputParamsStruct
+    ], [
+        bigint
+    ], "payable">;
+    quoteExactOutput: TypedContractMethod<[
+        path: BytesLike,
+        amountOut: BigNumberish
+    ], [
+        [
+            bigint,
+            bigint[],
+            bigint[],
+            bigint
+        ] & {
+            amountIn: bigint;
+            sqrtPriceX96AfterList: bigint[];
+            initializedTicksCrossedList: bigint[];
+            gasEstimate: bigint;
+        }
+    ], "nonpayable">;
+    slot0: TypedContractMethod<[
+    ], [
+        [
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            boolean
+        ] & {
+            sqrtPriceX96: bigint;
+            tick: bigint;
+            observationIndex: bigint;
+            observationCardinality: bigint;
+            observationCardinalityNext: bigint;
+            feeProtocol: bigint;
+            unlocked: boolean;
+        }
+    ], "view">;
+    token0: TypedContractMethod<[], [string], "view">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "exactOutput"): TypedContractMethod<[
+        params: IUniswapV3Protocol.ExactOutputParamsStruct
+    ], [
+        bigint
+    ], "payable">;
+    getFunction(nameOrSignature: "quoteExactOutput"): TypedContractMethod<[
+        path: BytesLike,
+        amountOut: BigNumberish
+    ], [
+        [
+            bigint,
+            bigint[],
+            bigint[],
+            bigint
+        ] & {
+            amountIn: bigint;
+            sqrtPriceX96AfterList: bigint[];
+            initializedTicksCrossedList: bigint[];
+            gasEstimate: bigint;
+        }
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "slot0"): TypedContractMethod<[
+    ], [
+        [
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            boolean
+        ] & {
+            sqrtPriceX96: bigint;
+            tick: bigint;
+            observationIndex: bigint;
+            observationCardinality: bigint;
+            observationCardinalityNext: bigint;
+            feeProtocol: bigint;
+            unlocked: boolean;
+        }
+    ], "view">;
+    getFunction(nameOrSignature: "token0"): TypedContractMethod<[], [string], "view">;
+    filters: {};
+}
+//# sourceMappingURL=IUniswapV3Protocol.d.ts.map

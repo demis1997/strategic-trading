@@ -1,0 +1,2324 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/AggregatorToken.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> AggregatorToken.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/156</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/39</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/238</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity 0.8.24;
+import {IERC20} from "@openzeppelin/contracts/interfaces/IERC20.sol";
+import {IERC4626} from "@openzeppelin/contracts/interfaces/IERC4626.sol";
+&nbsp;
+import {ITransferStrategy} from "./interfaces/ITransferStrategy.sol";
+import {IVaultsRegistry} from "./interfaces/IVaultsRegistry.sol";
+import {BaseAggregatorToken} from "./BaseAggregatorToken.sol";
+&nbsp;
+&nbsp;
+contract AggregatorToken is
+    BaseAggregatorToken
+{
+&nbsp;
+    DepositFailureMode public depositFailureMode;
+    WithdrawalMode public withdrawalMode;
+&nbsp;
+    uint256 private _totalSupply;
+    string private _name;
+    string private _symbol;
+&nbsp;
+    mapping(address account =&gt; mapping(address spender =&gt; uint256)) private _allowances;
+    mapping(address holder =&gt; Portfolio ) private userPortfolios;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function initialize(</span>
+        address underlyingAsset_,
+        address vaultsRegistry_,
+        address ownerAddress_,
+        string memory name_,
+        string memory symbol_
+    ) external initializer {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(underlyingAsset_, "underlyingAsset_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(vaultsRegistry_, "vaultsRegistry_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(ownerAddress_, "ownerAddress_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkEmptyString(name_, "name_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkEmptyString(symbol_, "symbol_")</span>;
+&nbsp;
+        // Initialize inherited contracts and state
+<span class="cstat-no" title="statement not covered" >        __Pausable_init()</span>;
+<span class="cstat-no" title="statement not covered" >        __AccessControl_init()</span>;
+&nbsp;
+        // Grant the roles to the specified owner
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_MANAGER_ROLE, ownerAddress_)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(LYSADMIN_MANAGER_ROLE, ownerAddress_)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(VALUATIONS_MANAGER_ROLE, ownerAddress_)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(VAULTS_MANAGER_ROLE, ownerAddress_)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(DEFAULT_ADMIN_ROLE, ownerAddress_)</span>;
+&nbsp;
+        // Set name and symbol
+        _name = name_;
+        _symbol = symbol_;
+&nbsp;
+        // Set master token and vault registry addresses
+        underlyingAsset = underlyingAsset_;
+        vaultsRegistry = vaultsRegistry_;
+    }
+&nbsp;
+    //*************************
+    // GETTERS
+    //*************************
+&nbsp;
+    /**
+     * @dev Returns the name of the token.
+     */
+<span class="fstat-no" title="function not covered" >    function name() public view virtual returns (string memory) {</span>
+<span class="cstat-no" title="statement not covered" >        return _name;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the symbol of the token, usually a shorter version of the
+     * name.
+     */
+<span class="fstat-no" title="function not covered" >    function symbol() public view virtual returns (string memory) {</span>
+<span class="cstat-no" title="statement not covered" >        return _symbol;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the number of decimals used to get its user representation.
+     * For example, if `decimals` equals `2`, a balance of `505` tokens should
+     * be displayed to a user as `5.05` (`505 / 10 ** 2`).
+     *
+     * Tokens usually opt for a value of 18, imitating the relationship between
+     * Ether and Wei. This is the default value returned by this function, unless
+     * it's overridden.
+     *
+     * NOTE: This information is only used for _display_ purposes: it in
+     * no way affects any of the arithmetic of the contract, including
+     * {IERC20-balanceOf} and {IERC20-transfer}.
+     */
+<span class="fstat-no" title="function not covered" >    function decimals() public view virtual returns (uint8) {</span>
+<span class="cstat-no" title="statement not covered" >        return 18;</span>
+    }
+&nbsp;
+    /**
+     * @dev See {IERC20-totalSupply}.
+     */
+<span class="fstat-no" title="function not covered" >    function totalSupply() public view virtual returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return _totalSupply;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function balanceOf(address account_) public view virtual returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return userPortfolios[account_].currentBalance;</span>
+    }
+&nbsp;
+    /**
+     * @dev See {IERC20-allowance}.
+     */
+<span class="fstat-no" title="function not covered" >    function allowance(address owner, address spender) public view virtual returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return _allowances[owner][spender];</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the exchange rate of the token, calculated as the ratio of total supply to underlying value.
+     * @return uint256 The exchange rate of the token.
+     */
+<span class="fstat-no" title="function not covered" >    function exchangeRate() external view returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        if(underlyingValue == 0){</span>
+<span class="cstat-no" title="statement not covered" >            return 0;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return _totalSupply / underlyingValue;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the address of the underlying asset.
+     * @return address The address of the underlying asset.
+     */
+<span class="fstat-no" title="function not covered" >    function getUnderlyingAsset() external view returns (address) {</span>
+<span class="cstat-no" title="statement not covered" >        return underlyingAsset;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the list of vaults with a non-zero balance for a given address.
+     * @param tokenHolder_ The address of the user whose vaults are being queried.
+     * @return vaults An array of vault addresses with non-zero balance.
+     */
+<span class="fstat-no" title="function not covered" >    function vaultsOf(address tokenHolder_) external view returns (address[] memory vaults) {</span>
+<span class="cstat-no" title="statement not covered" >        return userPortfolios[tokenHolder_].vaults;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the number of vaults in a user's portfolio.
+     * @param tokenHolder_ The address of the user whose number of vaults is being queried.
+     * @return uint The number of vaults in the user's portfolio.
+     */
+<span class="fstat-no" title="function not covered" >    function numberOfVaults(address tokenHolder_) public view returns (uint) {</span>
+<span class="cstat-no" title="statement not covered" >        return userPortfolios[tokenHolder_].vaults.length;</span>
+    }
+&nbsp;
+    /*
+        "current" denominated funtions read on underlyin vaults and update protfolio references.
+    */
+&nbsp;
+    /**
+     * @dev Retrieves the current shares per vault for a user's portfolio.
+     * @param tokenHolder_ The address of the user whose portfolio is being queried.
+     * @return vaults An array of vault addresses.
+     * @return shares An array of the current shares in each vault.
+     */
+<span class="fstat-no" title="function not covered" >    function currentSharesPerVault(address tokenHolder_) external view returns (address[] memory vaults, uint256[] memory shares) {</span>
+<span class="cstat-no" title="statement not covered" >        Portfolio storage portfolio = userPortfolios[tokenHolder_];</span>
+<span class="cstat-no" title="statement not covered" >        uint256 length = portfolio.vaults.length;</span>
+&nbsp;
+        vaults = new address[](length);
+        shares = new uint256[](length);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            address vault = portfolio.vaults[i];</span>
+            vaults[i] = vault;
+            shares[i] = portfolio.sharesPerVault[vault];
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return (vaults, shares);</span>
+    }
+&nbsp;
+    /**
+     * @dev Retrieves the current asset values per vault for a user's portfolio by querying the vaults.
+     * @param tokenHolder_ The address of the user whose portfolio is being queried.
+     * @return vaults An array of vault addresses.
+     * @return assets An array of the current assets in each vault.
+     */
+<span class="fstat-no" title="function not covered" >    function currentAssetsPerVault(address tokenHolder_) external view returns (address[] memory vaults, uint256[] memory assets) {</span>
+<span class="cstat-no" title="statement not covered" >        Portfolio storage portfolio = userPortfolios[tokenHolder_];</span>
+<span class="cstat-no" title="statement not covered" >        uint256 length = portfolio.vaults.length;</span>
+&nbsp;
+        vaults = new address[](length);
+        assets = new uint256[](length);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            address vault = portfolio.vaults[i];</span>
+            vaults[i] = vault;
+<span class="cstat-no" title="statement not covered" >            uint256 shares = portfolio.sharesPerVault[vault];</span>
+            assets[i] = IERC4626(vault).convertToAssets(shares);
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return (vaults, assets);</span>
+    }
+&nbsp;
+    /*
+        "last" denominated funtions do not read on underlying vaults, instead is read just in portfolio manager contract.
+    */
+&nbsp;
+    /**
+     * @dev Retrieves the last recorded shares per vault for a user's portfolio without querying the vaults.
+     * @param tokenHolder_ The address of the user whose portfolio is being queried.
+     * @return vaults An array of vault addresses.
+     * @return shares An array of the last recorded shares in each vault.
+     */
+<span class="fstat-no" title="function not covered" >    function lastSharesPerVault(address tokenHolder_) external view returns (address[] memory vaults, uint256[] memory shares ) {</span>
+<span class="cstat-no" title="statement not covered" >        Portfolio storage portfolio = userPortfolios[tokenHolder_];</span>
+<span class="cstat-no" title="statement not covered" >        uint256 length = portfolio.vaults.length;</span>
+&nbsp;
+        vaults = new address[](length);
+        shares = new uint256[](length);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            address vault = portfolio.vaults[i];</span>
+            vaults[i] = vault;
+            shares[i] = portfolio.sharesPerVault[vault];
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return (vaults, shares);</span>
+    }
+&nbsp;
+    /**
+     * @dev Retrieves the last recorded asset values per vault for a user's portfolio without querying the vaults.
+     * @param tokenHolder_ The address of the user whose portfolio is being queried.
+     * @return vaults An array of vault addresses.
+     * @return assets An array of the last recorded assets in each vault.
+     */
+<span class="fstat-no" title="function not covered" >    function lastAssetsPerVault(address tokenHolder_) external view returns (address[] memory vaults, uint256[] memory assets) {</span>
+<span class="cstat-no" title="statement not covered" >        Portfolio storage portfolio = userPortfolios[tokenHolder_];</span>
+<span class="cstat-no" title="statement not covered" >        uint256 length = portfolio.vaults.length;</span>
+&nbsp;
+        vaults = new address[](length);
+        assets = new uint256[](length);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            address vault = portfolio.vaults[i];</span>
+            vaults[i] = vault;
+            assets[i] = portfolio.assetsPerVault[vault];
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return (vaults, assets);</span>
+    }
+&nbsp;
+    //*************************
+    // USER
+    //*************************
+&nbsp;
+    /**
+     * @dev See {IERC20-approve}.
+     */
+<span class="fstat-no" title="function not covered" >    function approve(address spender, uint256 value) public virtual returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        address owner = _msgSender();</span>
+<span class="cstat-no" title="statement not covered" >        _approve(owner, spender, value, true)</span>;
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+&nbsp;
+    /**
+     * @dev See {IERC20-transfer}.
+     */
+<span class="fstat-no" title="function not covered" >    function transfer(address to, uint256 value) public virtual returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        address owner = _msgSender();</span>
+<span class="cstat-no" title="statement not covered" >        _transfer(owner, to, value)</span>;
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+&nbsp;
+    /**
+     * @dev See {IERC20-transferFrom}.
+     */
+<span class="fstat-no" title="function not covered" >    function transferFrom(address from, address to, uint256 value) public virtual returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        address spender = _msgSender();</span>
+<span class="cstat-no" title="statement not covered" >        _spendAllowance(from, spender, value)</span>;
+<span class="cstat-no" title="statement not covered" >        _transfer(from, to, value)</span>;
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+&nbsp;
+    /**
+     * @notice Deposits the specified amounts into multiple vaults.
+     * @param receiver_ The address to credit the shares.
+     * @param vaults_ The list of vault addresses.
+     * @param values_ The list of amounts to deposit into each vault.
+     * @param totalValue_ The total amount of underlying assets to deposit.
+     * @return mintedShares The total amount of shares minted.
+     */
+<span class="fstat-no" title="function not covered" >    function deposit(</span>
+        address receiver_,
+        address[] calldata vaults_,
+        uint256[] calldata values_,
+        uint256 totalValue_
+    ) external override whenNotPaused nonReentrant returns (uint256) {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(receiver_, "receiver_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAmount(totalValue_, "totalValue_")</span>;
+<span class="cstat-no" title="statement not covered" >        _validateArgumentsLength(vaults_, values_)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _updatePortfolioValuation(receiver_)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        IERC20(underlyingAsset).transferFrom(_msgSender(), address(this), totalValue_)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        (uint256 mintedShares, uint256 distributedFunds) = _distributeDeposits(receiver_, vaults_, values_);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (distributedFunds != totalValue_) revert WrongDepositValues();</span>
+&nbsp;
+        unchecked{
+            underlyingValue += distributedFunds;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _updateUserPortfolio(receiver_, mintedShares, distributedFunds, true)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit Deposit(_msgSender(), receiver_, vaults_, values_, mintedShares);</span>
+<span class="cstat-no" title="statement not covered" >        return mintedShares;</span>
+    }
+&nbsp;
+    /**
+     * @notice Withdraws the specified amounts from multiple vaults.
+     * @param vaults_ The list of vault addresses.
+     * @param assets_ The list of amounts to withdraw from each vault.
+     * @param maxSlippage The maximum slippage allowed.
+     * @return withdrawnFunds The total amount of funds withdrawn.
+     */
+<span class="fstat-no" title="function not covered" >    function withdraw(</span>
+        address[] calldata vaults_,
+        uint256[] calldata assets_,
+        uint256 maxSlippage
+    ) external whenNotPaused nonReentrant override returns (uint256) {
+<span class="cstat-no" title="statement not covered" >        _validateArgumentsLength(vaults_, assets_)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _updatePortfolioValuation(_msgSender())</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        (uint256 burnedShares, uint256 withdrawnFunds) = _distributeWithdrawals(_msgSender(), vaults_, assets_);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (_checkSlippage(burnedShares, withdrawnFunds, maxSlippage))</span>
+            revert BrokeSlippage();
+&nbsp;
+        underlyingValue -= withdrawnFunds;
+<span class="cstat-no" title="statement not covered" >        _updateUserPortfolio(_msgSender(), burnedShares, withdrawnFunds, false)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        IERC20(underlyingAsset).transfer(_msgSender(), withdrawnFunds)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit Withdrawal(address(this), _msgSender(), withdrawnFunds);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return withdrawnFunds;</span>
+    }
+&nbsp;
+    /**
+     * @dev External function to update the valuation of a user's portfolio.
+     * @param tokenHolder_ The address of the user whose portfolio is being updated.
+     * @return bool Returns true if the operation is successful.
+     */
+<span class="fstat-no" title="function not covered" >    function updatePortfolioValuation(address tokenHolder_) external returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(tokenHolder_, "tokenHolder_")</span>;
+<span class="cstat-no" title="statement not covered" >        return _updatePortfolioValuation(tokenHolder_);</span>
+    }
+&nbsp;
+    /**
+     * @dev Gets the last exchange rate of the user's portfolio, calculated as the ratio of current underlying value to current balance.
+     * @param tokenHolder_ The address of the user whose portfolio exchange rate is being queried.
+     * @return uint256 The exchange rate of the user's portfolio.
+     */
+<span class="fstat-no" title="function not covered" >    function getPortfolioLastExchangeRate(address tokenHolder_) external view returns (uint256){</span>
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(tokenHolder_, "tokenHolder_")</span>;
+<span class="cstat-no" title="statement not covered" >        Portfolio storage portfolio = userPortfolios[tokenHolder_];</span>
+<span class="cstat-no" title="statement not covered" >        if(portfolio.currentBalance == 0){</span>
+<span class="cstat-no" title="statement not covered" >            return 0;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return portfolio.currentUnderlyingValue / portfolio.currentBalance;</span>
+    }
+&nbsp;
+    //*************************
+    // INTERNAL
+    //*************************
+&nbsp;
+    /**
+     * @dev Checks if a vault is active in the registry.
+     * @param vault_ The address of the vault.
+     * @return bool True if the vault is active, false otherwise.
+     */
+<span class="fstat-no" title="function not covered" >    function _isVaultActive(address vault_) internal view returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return IVaultsRegistry(vaultsRegistry).isVaultActive(vault_);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function _checkSlippage(uint256 shares, uint256 funds, uint256 maxSlippage) internal view returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+    }
+&nbsp;
+    /**
+     * @dev Approves the spender to transfer up to the specified value of the owner's tokens.
+     * @param owner The address of the token owner.
+     * @param spender The address allowed to spend the owner's tokens.
+     * @param value The maximum amount of tokens the spender is allowed to transfer.
+     * @param emitEvent Boolean indicating whether to emit the Approval event.
+     */
+<span class="fstat-no" title="function not covered" >    function _approve(address owner, address spender, uint256 value, bool emitEvent) internal virtual {</span>
+<span class="cstat-no" title="statement not covered" >        if (owner == address(0)) {</span>
+            revert ERC20InvalidApprover(address(0));
+        }
+<span class="cstat-no" title="statement not covered" >        if (spender == address(0)) {</span>
+            revert ERC20InvalidSpender(address(0));
+        }
+        _allowances[owner][spender] = value;
+<span class="cstat-no" title="statement not covered" >        if (emitEvent) {</span>
+<span class="cstat-no" title="statement not covered" >            emit Approval(owner, spender, value);</span>
+        }
+    }
+&nbsp;
+    /**
+     * @dev Spends the specified value from the owner's allowance for the spender.
+     * @param owner The address of the token owner.
+     * @param spender The address allowed to spend the owner's tokens.
+     * @param value The amount of tokens to spend from the allowance.
+     */
+<span class="fstat-no" title="function not covered" >    function _spendAllowance(address owner, address spender, uint256 value) internal virtual {</span>
+<span class="cstat-no" title="statement not covered" >        uint256 currentAllowance = allowance(owner, spender);</span>
+<span class="cstat-no" title="statement not covered" >        if (currentAllowance != type(uint256).max) {</span>
+<span class="cstat-no" title="statement not covered" >            if (currentAllowance &lt; value) {</span>
+                revert ERC20InsufficientAllowance(spender, currentAllowance, value);
+            }
+            unchecked {
+<span class="cstat-no" title="statement not covered" >                _approve(owner, spender, currentAllowance - value, false)</span>;
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @dev Transfers shares from one user to another.
+     * @param from The address of the sender.
+     * @param to The address of the recipient.
+     * @param value The amount of shares to transfer.
+     */
+<span class="fstat-no" title="function not covered" >    function _transfer(address from, address to, uint256 value) internal {</span>
+<span class="cstat-no" title="statement not covered" >        if (from == address(0)) {</span>
+            revert ERC20InvalidSender(address(0));
+        }
+<span class="cstat-no" title="statement not covered" >        if (to == address(0)) {</span>
+            revert ERC20InvalidReceiver(address(0));
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _updatePortfolioValuation(from)</span>;
+<span class="cstat-no" title="statement not covered" >        _updatePortfolioValuation(to)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        (uint256 totalShares, uint256 totalAssets) = _handleTransfer(from, to, value);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _updateUserPortfolio(from, totalShares, totalAssets, false)</span>;
+<span class="cstat-no" title="statement not covered" >        _updateUserPortfolio(to, totalShares, totalAssets, true)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit Transfer(from, to, value);</span>
+    }
+&nbsp;
+&nbsp;
+    /**
+     * @dev Internal function to handle the transfer logic of shares from one user to another.
+     * @param from The address of the sender.
+     * @param to The address of the recipient.
+     * @param value The amount of shares to transfer.
+     * @return totalShares The total shares transferred.
+     * @return totalAssets The total assets transferred.
+     */
+<span class="fstat-no" title="function not covered" >    function _handleTransfer(</span>
+        address from,
+        address to,
+        uint256 value
+    ) internal returns (uint256 totalShares, uint256 totalAssets) {
+<span class="cstat-no" title="statement not covered" >        if(balanceOf(from) &lt; value){</span>
+            revert ERC20InsufficientBalance(from, balanceOf(from), value);
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        (address[] memory vaults, uint256[] memory shares) = ITransferStrategy(transferStrategy).executePartialTransferStrategy(from, to, value);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        Portfolio storage senderPortfolio = userPortfolios[from];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; vaults.length;) {</span>
+<span class="cstat-no" title="statement not covered" >            address vault = vaults[i];</span>
+<span class="cstat-no" title="statement not covered" >            uint256 share = shares[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if(share &gt; senderPortfolio.sharesPerVault[vault]){</span>
+                revert InsufficentSharesPerValut(from, senderPortfolio.sharesPerVault[vault], share);
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            uint256 valuePerShare = _calculateValuePerShare(senderPortfolio, vault);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if(valuePerShare &gt; senderPortfolio.assetsPerVault[vault]){</span>
+                revert InsufficentAssetsPerValut(from, senderPortfolio.assetsPerVault[vault], valuePerShare);
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            _transferSharesAndAssets(from, to, vault, share, valuePerShare)</span>;
+&nbsp;
+            unchecked {
+                totalShares += share;
+                totalAssets += share * valuePerShare;
+            }
+&nbsp;
+            unchecked {
+                i++;
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(totalShares &gt; senderPortfolio.currentBalance){</span>
+            revert InsufficentTotalShares(from, senderPortfolio.currentBalance, totalShares);
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(totalAssets &gt; senderPortfolio.currentUnderlyingValue){</span>
+            revert InsufficentTotalAssets(from, senderPortfolio.currentUnderlyingValue, totalAssets);
+        }
+    }
+&nbsp;
+    /**
+     * @dev Internal function to transfer shares and assets between users for a specific vault.
+     * @param from The address of the sender.
+     * @param to The address of the recipient.
+     * @param vault The address of the vault.
+     * @param share The amount of shares to transfer.
+     * @param valuePerShare The value per share in the vault.
+     */
+<span class="fstat-no" title="function not covered" >    function _transferSharesAndAssets(</span>
+        address from,
+        address to,
+        address vault,
+        uint256 share,
+        uint256 valuePerShare
+    ) internal {
+<span class="cstat-no" title="statement not covered" >        uint256 assets = share * valuePerShare;</span>
+<span class="cstat-no" title="statement not covered" >        _updateVaultBalances(from, vault, share, assets, false)</span>;
+<span class="cstat-no" title="statement not covered" >        _updateVaultBalances(to, vault, share, assets, true)</span>;
+    }
+&nbsp;
+    /**
+     * @dev Updates the balances of shares and assets for a specific vault in the user's portfolio.
+     * @param receiver The address of the user.
+     * @param vault The address of the vault.
+     * @param shares The amount of shares to update.
+     * @param value The amount of assets to update.
+     * @param isDeposit Boolean indicating if the update is for a deposit or withdrawal.
+     */
+<span class="fstat-no" title="function not covered" >    function _updateVaultBalances(address receiver, address vault, uint256 shares, uint256 value, bool isDeposit) internal {</span>
+<span class="cstat-no" title="statement not covered" >        if (isDeposit) {</span>
+<span class="cstat-no" title="statement not covered" >            _addVaultIfNotPresent(receiver, vault)</span>;
+            unchecked{
+                userPortfolios[receiver].sharesPerVault[vault] += shares;
+                userPortfolios[receiver].assetsPerVault[vault] += value;
+            }
+        } else {
+            unchecked{
+                userPortfolios[receiver].sharesPerVault[vault] -= shares;
+                userPortfolios[receiver].assetsPerVault[vault] -= value;
+            }
+<span class="cstat-no" title="statement not covered" >            _removeVaultIfEmpty(receiver, vault)</span>;
+        }
+    }
+&nbsp;
+    /**
+     * @dev Adds a vault to a user's portfolio if not already present.
+     * @param receiver The address of the user.
+     * @param vault_ The address of the vault to add.
+     */
+<span class="fstat-no" title="function not covered" >    function _addVaultIfNotPresent(address receiver, address vault_) internal {</span>
+<span class="cstat-no" title="statement not covered" >        if (userPortfolios[receiver].sharesPerVault[vault_] == 0) {</span>
+<span class="cstat-no" title="statement not covered" >            if (userPortfolios[receiver].vaults.length &gt;= maxVaultsPerHolder) {</span>
+                revert MaxVaultsPerUser();
+            }
+<span class="cstat-no" title="statement not covered" >            userPortfolios[receiver].vaults.push(vault_)</span>;
+        }
+    }
+&nbsp;
+    /**
+     * @dev Removes a vault from a user's portfolio if their balance is zero.
+     * @param receiver The address of the user.
+     * @param vault_ The address of the vault to remove.
+     */
+<span class="fstat-no" title="function not covered" >    function _removeVaultIfEmpty(address receiver, address vault_) internal {</span>
+<span class="cstat-no" title="statement not covered" >        if (userPortfolios[receiver].sharesPerVault[vault_] == 0) {</span>
+<span class="cstat-no" title="statement not covered" >            uint256 vaultIndex = userPortfolios[receiver].vaults.length;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            for (uint256 i = 0; i &lt; userPortfolios[receiver].vaults.length;) {</span>
+<span class="cstat-no" title="statement not covered" >                if (userPortfolios[receiver].vaults[i] == vault_) {</span>
+                    vaultIndex = i;
+                    break;
+                }
+&nbsp;
+                unchecked {
+                   i++;
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (vaultIndex &lt; userPortfolios[receiver].vaults.length) {</span>
+                userPortfolios[receiver].vaults[vaultIndex] = userPortfolios[receiver].vaults[userPortfolios[receiver].vaults.length - 1];
+<span class="cstat-no" title="statement not covered" >                userPortfolios[receiver].vaults.pop()</span>;
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @dev Updates the user's portfolio with the new balance and value.
+     * @param receiver The address of the user.
+     * @param shares The amount of shares to update.
+     * @param value The amount of value to update.
+     * @param isDeposit Boolean indicating if the update is for a deposit or withdrawal.
+     */
+<span class="fstat-no" title="function not covered" >    function _updateUserPortfolio(address receiver, uint256 shares, uint256 value, bool isDeposit) internal {</span>
+<span class="cstat-no" title="statement not covered" >        if (isDeposit) {</span>
+            unchecked{
+                userPortfolios[receiver].currentBalance += shares;
+                userPortfolios[receiver].currentUnderlyingValue += value;
+            }
+        } else {
+            unchecked{
+                userPortfolios[receiver].currentBalance -= shares;
+                userPortfolios[receiver].currentUnderlyingValue -= value;
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @dev Internal function to update the valuation of a user's portfolio.
+     * @param tokenHolder_ The address of the user whose portfolio is being updated.
+     * @return bool Returns true if the operation is successful.
+     */
+<span class="fstat-no" title="function not covered" >    function _updatePortfolioValuation(address tokenHolder_) internal returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        Portfolio storage portfolio = userPortfolios[tokenHolder_];</span>
+<span class="cstat-no" title="statement not covered" >        uint256 length = portfolio.vaults.length;</span>
+<span class="cstat-no" title="statement not covered" >        uint256 totalAssets;</span>
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; length;) {</span>
+<span class="cstat-no" title="statement not covered" >            address vault = portfolio.vaults[i];</span>
+<span class="cstat-no" title="statement not covered" >            uint256 shares = portfolio.sharesPerVault[vault];</span>
+<span class="cstat-no" title="statement not covered" >            uint256 assets = IERC4626(vault).convertToAssets(shares);</span>
+            portfolio.assetsPerVault[vault] = assets;
+&nbsp;
+            unchecked {
+                totalAssets += assets;
+            }
+&nbsp;
+            unchecked {
+                i++;
+            }
+        }
+&nbsp;
+        portfolio.lastblockUpdate = block.number;
+        portfolio.currentUnderlyingValue = totalAssets;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit PortfolioValuationUpdated(tokenHolder_);</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+&nbsp;
+    /**
+     * @dev Internal function to distribute deposits across multiple vaults.
+     * @param receiver The address to credit the shares.
+     * @param vaults_ The list of vault addresses.
+     * @param values_ The list of amounts to deposit into each vault.
+     * @return mintedShares The total amount of shares minted.
+     * @return distributedFunds The total amount of funds distributed.
+     */
+<span class="fstat-no" title="function not covered" >    function _distributeDeposits(</span>
+        address receiver,
+        address[] calldata vaults_,
+        uint256[] calldata values_
+    ) internal returns (uint256 mintedShares, uint256 distributedFunds) {
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; vaults_.length; ) {</span>
+<span class="cstat-no" title="statement not covered" >            address vault = vaults_[i];</span>
+<span class="cstat-no" title="statement not covered" >            uint256 value = values_[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            _checkZeroAddress(vault, "vault")</span>;
+<span class="cstat-no" title="statement not covered" >            _checkZeroAmount(value, "value")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!_isVaultActive(vault)) revert UnsupportedVault(vault);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            IERC20(underlyingAsset).approve(vault, value)</span>;
+<span class="cstat-no" title="statement not covered" >            uint256 shares = IERC4626(vault).deposit(value, address(this));</span>
+&nbsp;
+            unchecked {
+                mintedShares += shares;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            _updateVaultBalances(receiver, vault, shares, value, true)</span>;
+<span class="cstat-no" title="statement not covered" >            _incrementVaultShares(vault, shares)</span>;
+&nbsp;
+            unchecked {
+                distributedFunds += value;
+            }
+&nbsp;
+            unchecked {
+                i++;
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @dev Internal function to handle withdrawals from multiple vaults.
+     * @param vaults_ The list of vault addresses.
+     * @param assets_ The list of amounts to withdraw from each vault.
+     * @return burnedShares The total amount of shares burned.
+     * @return withdrawnFunds The total amount of funds withdrawn.
+     */
+<span class="fstat-no" title="function not covered" >    function _distributeWithdrawals(</span>
+        address receiver,
+        address[] calldata vaults_,
+        uint256[] calldata assets_
+    ) internal returns (uint256 burnedShares, uint256 withdrawnFunds) {
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; vaults_.length; ) {</span>
+<span class="cstat-no" title="statement not covered" >            address vault = vaults_[i];</span>
+<span class="cstat-no" title="statement not covered" >            uint256 value = assets_[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            _checkZeroAddress(vault, "vault")</span>;
+<span class="cstat-no" title="statement not covered" >            _checkZeroAmount(value, "value")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if(value &gt; userPortfolios[receiver].assetsPerVault[vault]){</span>
+                revert InsufficentAssetsPerValut(receiver, userPortfolios[receiver].assetsPerVault[vault], value);
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!_isVaultActive(vault)) revert UnsupportedVault(vault);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            uint256 shares = IERC4626(vault).withdraw(value, address(this), address(this));</span>
+            burnedShares += shares;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            _updateVaultBalances(_msgSender(), vault, shares, value, false)</span>;
+<span class="cstat-no" title="statement not covered" >            _decrementVaultShares(vault, shares)</span>;
+&nbsp;
+            withdrawnFunds += value;
+&nbsp;
+            unchecked {
+                i++;
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @dev Calculates the value per share for a given vault in a user's portfolio.
+     * @param portfolio The user's portfolio.
+     * @param vault The address of the vault.
+     * @return The value per share.
+     */
+<span class="fstat-no" title="function not covered" >    function _calculateValuePerShare(Portfolio storage portfolio, address vault) internal view returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return portfolio.assetsPerVault[vault] / portfolio.sharesPerVault[vault];</span>
+    }
+&nbsp;
+    /**
+     * @dev Increases the total shares balance for a vault and total supply.
+     * @param vault_ The address of the vault.
+     * @param amount_ The amount of shares to increase.
+     */
+<span class="fstat-no" title="function not covered" >    function _incrementVaultShares(address vault_, uint256 amount_) internal {</span>
+        unchecked{
+            vaultsShares[vault_] += amount_;
+            _totalSupply += amount_;
+        }
+    }
+&nbsp;
+    /**
+     * @dev Decreases the total shares balance for a vault and total supply.
+     * @param vault_ The address of the vault.
+     * @param amount_ The amount of shares to decrease.
+     */
+<span class="fstat-no" title="function not covered" >    function _decrementVaultShares(address vault_, uint256 amount_) internal {</span>
+        vaultsShares[vault_] -= amount_;
+        _totalSupply -= amount_;
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 05 2024 13:25:43 GMT+0300 (Eastern European Summer Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

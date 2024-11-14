@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/VaultsRegistry.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> VaultsRegistry.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/25</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/28</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+&nbsp;
+import {AccessControlUpgradeable} from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import {UpgradeableBeacon} from "@openzeppelin/contracts/proxy/beacon/UpgradeableBeacon.sol";
+import {BeaconProxy} from "@openzeppelin/contracts/proxy/beacon/BeaconProxy.sol";
+&nbsp;
+import {Vault} from "./Vault.sol";
+&nbsp;
+import {IVaultsRegistry} from "./interfaces/IVaultsRegistry.sol";
+import {IVault} from "./interfaces/IVault.sol";
+&nbsp;
+/// @title A contract for managing vaults and their configurations.
+/// @dev Extends AccessControlUpgradeable for role-based permissions.
+contract VaultsRegistry is AccessControlUpgradeable, IVaultsRegistry {
+    /// @notice The base multiplier for fee calculations, set to 100%.
+    uint256 public constant BASE = 100e18;
+&nbsp;
+    /// @notice The default fee rate for the vaults.
+    uint256 public defaultFeeRate;
+&nbsp;
+    /// @notice Mapping to track whether a vault is active.
+    mapping(address vaults =&gt; bool active) public validVaults;
+&nbsp;
+    /// @dev Address of the upgradeable beacon for vault deployment.
+    UpgradeableBeacon private _beaconProxyForVault;
+&nbsp;
+    /// @notice Initializes the registry with the default fee rate and vault implementation.
+    /// @param defaultFeeRate_ The initial default fee rate.
+    /// @param vaultImplementation_ The address of the vault implementation.
+<span class="fstat-no" title="function not covered" >    function initialize(</span>
+        uint256 defaultFeeRate_,
+        address vaultImplementation_
+    ) external initializer {
+<span class="cstat-no" title="statement not covered" >        if (defaultFeeRate_ &gt; BASE) revert DefaultFeeRateError();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(vaultImplementation_, "vaultImplementation_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        __AccessControl_init()</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _grantRole(DEFAULT_ADMIN_ROLE, _msgSender())</span>;
+&nbsp;
+        _beaconProxyForVault = new UpgradeableBeacon(vaultImplementation_, address(this));
+&nbsp;
+        defaultFeeRate = defaultFeeRate_;
+    }
+&nbsp;
+    /// @notice Sets a new default fee rate.
+    /// @param defaultFeeRate_ The new default fee rate to be set.
+<span class="fstat-no" title="function not covered" >    function setDefaultFeeRate(uint256 defaultFeeRate_) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        if (defaultFeeRate_ &gt; BASE) revert DefaultFeeRateError();</span>
+&nbsp;
+        defaultFeeRate = defaultFeeRate_;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit DefaultFeeRateSet(defaultFeeRate_);</span>
+    }
+&nbsp;
+    /// @notice Updates the vault implementation in the beacon proxy.
+    /// @param newImplementation_ The address of the new vault implementation.
+<span class="fstat-no" title="function not covered" >    function setVaultImplementation(address newImplementation_) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(newImplementation_, "newImplementation_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _beaconProxyForVault.upgradeTo(newImplementation_)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit VaultImplementationChanged(newImplementation_);</span>
+    }
+&nbsp;
+    /// @notice Activates or deactivates a vault.
+    /// @param vaultAddress_ The address of the vault.
+    /// @param status_ The new status of the vault (active or not).
+<span class="fstat-no" title="function not covered" >    function setVaultStatus(address vaultAddress_, bool status_) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(vaultAddress_, "vaultAddress_")</span>;
+&nbsp;
+        validVaults[vaultAddress_] = status_;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit VaultStatusChanged(vaultAddress_, status_);</span>
+    }
+&nbsp;
+    /// @notice Deploys a new vault using the beacon proxy.
+    /// @param underlyingTokenAddress_ The address of the underlying token.
+    /// @param masterTokenAddress_ The address of the master token.
+    /// @param ownerAddress_ The address of the owner of the new vault.
+    /// @param sharesName_ The name for the shares of the vault.
+    /// @param sharesSymbol_ The symbol for the shares of the vault.
+<span class="fstat-no" title="function not covered" >    function deployVault(</span>
+        address underlyingTokenAddress_,
+        address masterTokenAddress_,
+        address ownerAddress_,
+        string memory sharesName_,
+        string memory sharesSymbol_
+    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(underlyingTokenAddress_, "underlyingTokenAddress_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(masterTokenAddress_, "masterTokenAddress_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(ownerAddress_, "ownerAddress_")</span>;
+<span class="cstat-no" title="statement not covered" >        if (bytes(sharesName_).length == 0) <span class="cstat-no" title="statement not covered" >revert("Invalid sharesName")</span>;</span>
+<span class="cstat-no" title="statement not covered" >        if (bytes(sharesSymbol_).length == 0) <span class="cstat-no" title="statement not covered" >revert("Invalid sharesSymbol")</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        address newVault = address(</span>
+            new BeaconProxy(
+                address(_beaconProxyForVault),
+                abi.encodeWithSelector(
+                    IVault.initialize.selector,
+                    underlyingTokenAddress_,
+                    masterTokenAddress_,
+                    address(this),
+                    ownerAddress_,
+                    sharesName_,
+                    sharesSymbol_
+                )
+            )
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (newVault == address(0)) revert FailedVaultDeployment();</span>
+&nbsp;
+        validVaults[newVault] = true;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit VaultDeployed(newVault);</span>
+    }
+&nbsp;
+    /// @notice Returns the address of the beacon proxy.
+<span class="fstat-no" title="function not covered" >    function getbeaconProxyAddress() external view onlyRole(DEFAULT_ADMIN_ROLE) returns (address) {        </span>
+<span class="cstat-no" title="statement not covered" >        return address(_beaconProxyForVault);</span>
+    }
+&nbsp;
+    /// @notice Returns the current vault implementation address.
+<span class="fstat-no" title="function not covered" >    function getVaultImplementationAddress() external view returns (address) {</span>
+<span class="cstat-no" title="statement not covered" >        return _beaconProxyForVault.implementation();</span>
+    }
+&nbsp;
+    /// @notice Checks if a vault is active.
+    /// @param vaultAddress_ The address of the vault.
+    /// @return status True if the vault is active, false otherwise.
+<span class="fstat-no" title="function not covered" >    function isVaultActive(address vaultAddress_) external view returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return validVaults[vaultAddress_];</span>
+    }
+&nbsp;
+    /// @dev Internal function to check for zero addresses and revert with a custom error.
+    /// @param _variable The address to check.
+    /// @param _message The error message in case of a zero address.
+<span class="fstat-no" title="function not covered" >    function _checkZeroAddress(address _variable, string memory _message) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (_variable == address(0)) revert ZeroAddress({target: _message});</span>
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 05 2024 13:25:43 GMT+0300 (Eastern European Summer Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

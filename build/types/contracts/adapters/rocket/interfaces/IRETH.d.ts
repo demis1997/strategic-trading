@@ -1,0 +1,50 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../../../common";
+export interface IRETHInterface extends Interface {
+    getFunction(nameOrSignature: "burn" | "getEthValue" | "getExchangeRate" | "getRethValue" | "getTotalCollateral"): FunctionFragment;
+    encodeFunctionData(functionFragment: "burn", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getEthValue", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getExchangeRate", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getRethValue", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getTotalCollateral", values?: undefined): string;
+    decodeFunctionResult(functionFragment: "burn", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getEthValue", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getExchangeRate", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getRethValue", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getTotalCollateral", data: BytesLike): Result;
+}
+export interface IRETH extends BaseContract {
+    connect(runner?: ContractRunner | null): IRETH;
+    waitForDeployment(): Promise<this>;
+    interface: IRETHInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    burn: TypedContractMethod<[_rethAmount: BigNumberish], [void], "nonpayable">;
+    getEthValue: TypedContractMethod<[
+        _rethAmount: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    getExchangeRate: TypedContractMethod<[], [bigint], "view">;
+    getRethValue: TypedContractMethod<[
+        _ethAmount: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    getTotalCollateral: TypedContractMethod<[], [bigint], "view">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "burn"): TypedContractMethod<[_rethAmount: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "getEthValue"): TypedContractMethod<[_rethAmount: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "getExchangeRate"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "getRethValue"): TypedContractMethod<[_ethAmount: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "getTotalCollateral"): TypedContractMethod<[], [bigint], "view">;
+    filters: {};
+}
+//# sourceMappingURL=IRETH.d.ts.map

@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/adapters/lido/LidoAdapter.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">contracts/adapters/lido/</a> LidoAdapter.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/50</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+&nbsp;
+import {BaseAdapter} from "./../BaseAdapter.sol";
+import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+&nbsp;
+import {IWETH} from "./../../interfaces/IWETH.sol";
+import {IwstETH} from "./interfaces/IwstETH.sol";
+&nbsp;
+import {ILidoProtocol} from "./interfaces/ILidoProtocol.sol";
+import {IAdapter} from "./../../interfaces/IAdapter.sol";
+&nbsp;
+/**
+ * @title Lido Staking Adapter for WETH with Uniswap V3 withdrawals
+ * @notice This contract manages the staking of WETH by unwrapping to ETH and staking it in Lido, and provides functionality to withdraw by swapping stETH to ETH or WETH on Uniswap V3.
+ * @dev Integrates Lido for staking and Uniswap V3 for liquidity swaps.
+ */
+contract LidoAdapter is BaseAdapter, IAdapter {
+    using SafeERC20 for IERC20;
+&nbsp;
+    /// @notice Address of the Lido contract
+    address public protocolAddress;
+&nbsp;
+    /// @notice Address of the wstETH contract
+    address public wstETHAddress;
+&nbsp;
+    /// @notice Indicates that staking has been paused on the Lido protocol
+    error StakingPaused();
+&nbsp;
+    /// @notice Indicates an error occurred during the wrap operation
+    /// @param token The token that failed to wrap
+    /// @param amount The amount that failed to wrap
+    error WrapError(address token, uint256 amount);
+&nbsp;
+    error InvalidLidoPrice(uint256 inLidoContract, uint256 inWstEthContract);
+&nbsp;
+    /// @notice Initializes the adapter with the necessary addresses and roles
+    /// @param protocolAddress_ The address of the Lido contract for stETH interactions
+    /// @param wethAddress_ The address of the WETH contract
+    /// @param wstETHAddress_ The address of the wstETH contract
+<span class="fstat-no" title="function not covered" >    function initialize(</span>
+        address protocolAddress_,
+        address wethAddress_,
+        address wstETHAddress_
+    ) public initializer {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(protocolAddress_, "protocolAddress_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(wethAddress_, "wethAddress_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(wstETHAddress_, "wstETHAddress_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        __AccessControl_init()</span>;
+<span class="cstat-no" title="statement not covered" >        __ReentrancyGuard_init()</span>;
+<span class="cstat-no" title="statement not covered" >        __Pausable_init()</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _grantRole(DEFAULT_ADMIN_ROLE, _msgSender())</span>;
+&nbsp;
+        protocolAddress = protocolAddress_;
+        wethAddress = wethAddress_;
+        wstETHAddress = wstETHAddress_;
+&nbsp;
+        // set default slippage
+        slippage = 4e16; // 4%;
+&nbsp;
+        // set name of the protocol to use 
+        protocolName = "Lido";
+    }
+&nbsp;
+    /// @notice Receives ETH sent to the contract
+    receive() external payable {}
+&nbsp;
+    /// @notice Takes WETH from Vault, converts it to ETH, and stakes it to receive stETH
+    /// @notice Conversion to wstETH is optional
+    /// @param sender_ The address sending WETH to be staked
+    /// @param receiver_ The address receiving stETH/wstETH
+    /// @param token_ The address of the token WETH
+    /// @param tokenAmount_ The amount of WETH to stake
+    /// @param wrapToken_ If the liquid token on lido should be wrapped to wstETH
+    /// @return liquidTkn The address of stETH/wstETH token received
+    /// @return liquidTknAmount The amount of stETH/wstETH received
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function deposit(</span>
+        address sender_, // vault
+        address receiver_, // strategy
+        address token_, // weth
+        uint256 tokenAmount_,
+        bool wrapToken_
+    )
+        external
+        whenNotPaused
+        nonReentrant
+        onlyRole(VAULT_STRATEGY_ROLE)
+        returns (address liquidTkn, uint256 liquidTknAmount)
+    {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(sender_, "sender_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(receiver_, "receiver_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(token_, "token_")</span>;
+<span class="cstat-no" title="statement not covered" >        _checkZeroAmount(tokenAmount_, "tokenAmount_")</span>;
+&nbsp;
+        // check weth address is being specified
+<span class="cstat-no" title="statement not covered" >        if (token_ != wethAddress) revert OnlyWETHAllowed();</span>
+&nbsp;
+        // get weth from vault, should already have approval
+<span class="cstat-no" title="statement not covered" >        IERC20(wethAddress).safeTransferFrom(sender_, address(this), tokenAmount_)</span>;
+&nbsp;
+        // convert WETH to ETH
+<span class="cstat-no" title="statement not covered" >        IWETH(wethAddress).withdraw(tokenAmount_)</span>;
+&nbsp;
+        // check if staking is possible
+<span class="cstat-no" title="statement not covered" >        if (ILidoProtocol(protocolAddress).isStakingPaused()) revert StakingPaused();</span>
+&nbsp;
+        // Adjust the calculation for slippage
+<span class="cstat-no" title="statement not covered" >        uint256 minStEthAmount = (tokenAmount_ * (1e18 - slippage)) / 1e18;</span>
+&nbsp;
+        // send funds to lido and check if slippage is ok
+<span class="cstat-no" title="statement not covered" >        ILidoProtocol(protocolAddress).submit{value: tokenAmount_}(address(0))</span>;
+        // get balance of received stETH from LIDO
+<span class="cstat-no" title="statement not covered" >        uint256 stEthAmount = IERC20(protocolAddress).balanceOf(address(this));</span>
+<span class="cstat-no" title="statement not covered" >        if (stEthAmount &lt; minStEthAmount)</span>
+            revert SlippageExceededOnDeposit(minStEthAmount, stEthAmount);
+&nbsp;
+        liquidTknAmount = stEthAmount;
+        liquidTkn = protocolAddress;
+&nbsp;
+        // if wrapping is true, wrap stETH to wstETH
+<span class="cstat-no" title="statement not covered" >        if (wrapToken_) {</span>
+            // approve wstETH contract to get the stETH
+<span class="cstat-no" title="statement not covered" >            IERC20(protocolAddress).approve(wstETHAddress, stEthAmount)</span>;
+&nbsp;
+            liquidTknAmount = IwstETH(wstETHAddress).wrap(stEthAmount);
+            liquidTkn = wstETHAddress;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (liquidTknAmount == 0) revert WrapError(protocolAddress, stEthAmount);</span>
+        }
+&nbsp;
+        // transfer wstETH / stETH to strategy
+<span class="cstat-no" title="statement not covered" >        IERC20(liquidTkn).safeTransfer(receiver_, liquidTknAmount)</span>;
+&nbsp;
+        // emit when deposit was done
+<span class="cstat-no" title="statement not covered" >        emit DepositedOnProtocol(sender_, token_, tokenAmount_, liquidTkn, liquidTknAmount);</span>
+&nbsp;
+        // return liquidTokenAddress and amount
+<span class="cstat-no" title="statement not covered" >        return (liquidTkn, liquidTknAmount);</span>
+    }
+&nbsp;
+    /// @notice Updates the address of the Lido protocol
+    /// @param protocolAddress_ The new address of the Lido protocol
+    /// @dev Only callable by the admin role
+<span class="fstat-no" title="function not covered" >    function setprotocolAddress(address protocolAddress_) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(protocolAddress_, "protocolAddress_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit AddressUpdated("protocolAddress", protocolAddress_);</span>
+&nbsp;
+        protocolAddress = protocolAddress_;
+    }
+&nbsp;
+    /// @notice Updates the address of the wstETH contract
+    /// @param wstETHAddress_ The new address of the wstETH contract
+    /// @dev Only callable by the admin role
+<span class="fstat-no" title="function not covered" >    function setWstETHAddress(address wstETHAddress_) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(wstETHAddress_, "wstETHAddress_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit AddressUpdated("wstETHAddress", wstETHAddress_);</span>
+&nbsp;
+        wstETHAddress = wstETHAddress_;
+    }
+&nbsp;
+    /// @notice Retrieves the address of the Lido protocol used by this adapter
+    /// @return address The address of the Lido protocol
+<span class="fstat-no" title="function not covered" >    function getProtocol() external view returns (address) {</span>
+<span class="cstat-no" title="statement not covered" >        return protocolAddress;</span>
+    }
+&nbsp;
+    /// @notice Function placeholders for potential future implementation
+<span class="fstat-no" title="function not covered" >    function claimEarnings(address, address) external virtual returns (address, uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        revert(REVERT_MSG)</span>;
+    }
+&nbsp;
+    /// @notice Function placeholders for potential future implementation
+<span class="fstat-no" title="function not covered" >    function getTokenPrice(address token_) external view virtual returns (uint256) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        uint256 price;</span>
+        // if token is stETH, return 1 
+<span class="cstat-no" title="statement not covered" >        if (token_ == protocolAddress) {</span>
+            price = 1e18;
+        } else <span class="cstat-no" title="statement not covered" >if (token_ == wstETHAddress) {</span>
+            // if token is wstETH, returns ETH amount equals to 1 share
+            price = ILidoProtocol(protocolAddress).getPooledEthByShares(1e18);
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (price &lt;= 0) revert InvalidLidoPrice({inLidoContract: price, inWstEthContract: 0});</span>
+&nbsp;
+        // // amount of stETH tokens corresponding to one wstETH
+        // uint256 oneWstETHInStETH = IwstETH(wstETHAddress).stEthPerToken();
+&nbsp;
+        // if (oneLidoInETH != oneWstETHInStETH)
+        //     revert InvalidLidoPrice({
+        //         inLidoContract: oneLidoInETH,
+        //         inWstEthContract: oneWstETHInStETH
+        //     });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return price;</span>
+    }
+&nbsp;
+    /// @notice Function placeholders for potential future implementation
+<span class="fstat-no" title="function not covered" >    function withdraw(</span>
+        address,
+        address,
+        address,
+        uint256,
+        address,
+        uint256,
+        bytes memory
+    ) external virtual returns (address, uint256) {
+<span class="cstat-no" title="statement not covered" >        revert(REVERT_MSG)</span>;
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 05 2024 13:25:43 GMT+0300 (Eastern European Summer Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

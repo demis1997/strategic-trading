@@ -1,0 +1,59 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "./common";
+export interface LIDO_proxyInterface extends Interface {
+    getFunction(nameOrSignature: "proxyType" | "isDepositable" | "implementation" | "appId" | "kernel"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "ProxyDeposit"): EventFragment;
+    encodeFunctionData(functionFragment: "proxyType", values?: undefined): string;
+    encodeFunctionData(functionFragment: "isDepositable", values?: undefined): string;
+    encodeFunctionData(functionFragment: "implementation", values?: undefined): string;
+    encodeFunctionData(functionFragment: "appId", values?: undefined): string;
+    encodeFunctionData(functionFragment: "kernel", values?: undefined): string;
+    decodeFunctionResult(functionFragment: "proxyType", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "isDepositable", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "implementation", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "appId", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "kernel", data: BytesLike): Result;
+}
+export declare namespace ProxyDepositEvent {
+    type InputTuple = [sender: AddressLike, value: BigNumberish];
+    type OutputTuple = [sender: string, value: bigint];
+    interface OutputObject {
+        sender: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export interface LIDO_proxy extends BaseContract {
+    connect(runner?: ContractRunner | null): LIDO_proxy;
+    waitForDeployment(): Promise<this>;
+    interface: LIDO_proxyInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    proxyType: TypedContractMethod<[], [bigint], "view">;
+    isDepositable: TypedContractMethod<[], [boolean], "view">;
+    implementation: TypedContractMethod<[], [string], "view">;
+    appId: TypedContractMethod<[], [string], "view">;
+    kernel: TypedContractMethod<[], [string], "view">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "proxyType"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "isDepositable"): TypedContractMethod<[], [boolean], "view">;
+    getFunction(nameOrSignature: "implementation"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "appId"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "kernel"): TypedContractMethod<[], [string], "view">;
+    getEvent(key: "ProxyDeposit"): TypedContractEvent<ProxyDepositEvent.InputTuple, ProxyDepositEvent.OutputTuple, ProxyDepositEvent.OutputObject>;
+    filters: {
+        "ProxyDeposit(address,uint256)": TypedContractEvent<ProxyDepositEvent.InputTuple, ProxyDepositEvent.OutputTuple, ProxyDepositEvent.OutputObject>;
+        ProxyDeposit: TypedContractEvent<ProxyDepositEvent.InputTuple, ProxyDepositEvent.OutputTuple, ProxyDepositEvent.OutputObject>;
+    };
+}
+//# sourceMappingURL=LIDO_proxy.d.ts.map

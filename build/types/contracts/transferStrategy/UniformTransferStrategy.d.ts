@@ -1,0 +1,238 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
+export interface UniformTransferStrategyInterface extends Interface {
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "LYSADMIN_MANAGER_ROLE" | "SCALING_FACTOR" | "TRANSFERS_MANAGER_ROLE" | "executePartialTransferStrategy" | "getRoleAdmin" | "grantRole" | "hasRole" | "initialize" | "renounceRole" | "revokeRole" | "setAggregatorTokenAddress" | "supportsInterface"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "AggregatorTokenSet" | "Initialized" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked"): EventFragment;
+    encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "LYSADMIN_MANAGER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "SCALING_FACTOR", values?: undefined): string;
+    encodeFunctionData(functionFragment: "TRANSFERS_MANAGER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "executePartialTransferStrategy", values: [AddressLike, AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "initialize", values: [AddressLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "setAggregatorTokenAddress", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
+    decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "LYSADMIN_MANAGER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "SCALING_FACTOR", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "TRANSFERS_MANAGER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "executePartialTransferStrategy", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setAggregatorTokenAddress", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
+}
+export declare namespace AggregatorTokenSetEvent {
+    type InputTuple = [newAggregatorToken: AddressLike];
+    type OutputTuple = [newAggregatorToken: string];
+    interface OutputObject {
+        newAggregatorToken: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace InitializedEvent {
+    type InputTuple = [version: BigNumberish];
+    type OutputTuple = [version: bigint];
+    interface OutputObject {
+        version: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleAdminChangedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        previousAdminRole: BytesLike,
+        newAdminRole: BytesLike
+    ];
+    type OutputTuple = [
+        role: string,
+        previousAdminRole: string,
+        newAdminRole: string
+    ];
+    interface OutputObject {
+        role: string;
+        previousAdminRole: string;
+        newAdminRole: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleGrantedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        account: AddressLike,
+        sender: AddressLike
+    ];
+    type OutputTuple = [role: string, account: string, sender: string];
+    interface OutputObject {
+        role: string;
+        account: string;
+        sender: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleRevokedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        account: AddressLike,
+        sender: AddressLike
+    ];
+    type OutputTuple = [role: string, account: string, sender: string];
+    interface OutputObject {
+        role: string;
+        account: string;
+        sender: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export interface UniformTransferStrategy extends BaseContract {
+    connect(runner?: ContractRunner | null): UniformTransferStrategy;
+    waitForDeployment(): Promise<this>;
+    interface: UniformTransferStrategyInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
+    LYSADMIN_MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
+    SCALING_FACTOR: TypedContractMethod<[], [bigint], "view">;
+    TRANSFERS_MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
+    executePartialTransferStrategy: TypedContractMethod<[
+        from_: AddressLike,
+        arg1: AddressLike,
+        shares_: BigNumberish
+    ], [
+        [string[], bigint[]]
+    ], "view">;
+    getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
+    grantRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    hasRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        boolean
+    ], "view">;
+    initialize: TypedContractMethod<[
+        aggregatorToken_: AddressLike,
+        ownerAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    renounceRole: TypedContractMethod<[
+        role: BytesLike,
+        callerConfirmation: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    revokeRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    setAggregatorTokenAddress: TypedContractMethod<[
+        aggregatorToken_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    supportsInterface: TypedContractMethod<[
+        interfaceId: BytesLike
+    ], [
+        boolean
+    ], "view">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "LYSADMIN_MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "SCALING_FACTOR"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "TRANSFERS_MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "executePartialTransferStrategy"): TypedContractMethod<[
+        from_: AddressLike,
+        arg1: AddressLike,
+        shares_: BigNumberish
+    ], [
+        [string[], bigint[]]
+    ], "view">;
+    getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
+    getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "hasRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        boolean
+    ], "view">;
+    getFunction(nameOrSignature: "initialize"): TypedContractMethod<[
+        aggregatorToken_: AddressLike,
+        ownerAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "renounceRole"): TypedContractMethod<[
+        role: BytesLike,
+        callerConfirmation: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "revokeRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setAggregatorTokenAddress"): TypedContractMethod<[aggregatorToken_: AddressLike], [void], "nonpayable">;
+    getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+    getEvent(key: "AggregatorTokenSet"): TypedContractEvent<AggregatorTokenSetEvent.InputTuple, AggregatorTokenSetEvent.OutputTuple, AggregatorTokenSetEvent.OutputObject>;
+    getEvent(key: "Initialized"): TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+    getEvent(key: "RoleAdminChanged"): TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+    getEvent(key: "RoleGranted"): TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+    getEvent(key: "RoleRevoked"): TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+    filters: {
+        "AggregatorTokenSet(address)": TypedContractEvent<AggregatorTokenSetEvent.InputTuple, AggregatorTokenSetEvent.OutputTuple, AggregatorTokenSetEvent.OutputObject>;
+        AggregatorTokenSet: TypedContractEvent<AggregatorTokenSetEvent.InputTuple, AggregatorTokenSetEvent.OutputTuple, AggregatorTokenSetEvent.OutputObject>;
+        "Initialized(uint64)": TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+        Initialized: TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+        "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+        RoleAdminChanged: TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+        "RoleGranted(bytes32,address,address)": TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+        RoleGranted: TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+        "RoleRevoked(bytes32,address,address)": TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+        RoleRevoked: TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+    };
+}
+//# sourceMappingURL=UniformTransferStrategy.d.ts.map

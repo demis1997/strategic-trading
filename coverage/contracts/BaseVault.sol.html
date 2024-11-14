@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/BaseVault.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> BaseVault.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+&nbsp;
+import {AccessControlUpgradeable} from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
+import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
+&nbsp;
+import {IVault} from "./interfaces/IVault.sol";
+&nbsp;
+/// @title BaseVault
+/// @dev Abstract contract for vaults handling assets with built-in access control, non-reentrancy, and pausable features.
+abstract contract BaseVault is
+    AccessControlUpgradeable,
+    ReentrancyGuardUpgradeable,
+    PausableUpgradeable,
+    IVault
+{
+    /// @notice Role to identify master token operations.
+    bytes32 public constant MASTER_TOKEN_ROLE = keccak256("MASTER_TOKEN_ROLE");
+&nbsp;
+    /// @notice Role identifier for addresses that can manage vault operations.
+    bytes32 public constant VAULT_MANAGER_ROLE = keccak256("VAULT_MANAGER_ROLE");
+&nbsp;
+    /// @notice Message to revert when an operation is not allowed.
+    string public constant REVERT_MSG = "Function not allowed";
+&nbsp;
+    /// @notice Address of the registry contract that keeps track of all vaults.
+    address public vaultsRegistryAddress;
+&nbsp;
+    /// @notice Address of the master token contract associated with the vault.
+    address public masterTokenAddress;
+&nbsp;
+    /// @notice Address of the strategy contract.
+    address public vaultStrategyAddress;
+&nbsp;
+    /// @notice Address of the strategy used for handling withdrawals.
+    /// @notice When using immediate withdraw this will match vaultStrategyAddress
+    address public withdrawStrategyAddress;
+&nbsp;
+    /// @notice Indicates from where (deposit/withdraw adapter) to valuate vault when oracle is not present
+    /// @notice 1 is deposit , 2 is withdraw
+    uint8 public valuationSource;
+&nbsp;
+    /// @notice Indicates if live valuation is performed during deposits.
+    bool public liveValuationOnDeposit;
+&nbsp;
+    /// @notice Indicates if live valuation is performed during withdrawals.
+    bool public liveValuationOnWithdraw;
+&nbsp;
+    /// @notice Total amount of assets pending deposit before harvest.
+    uint256 public pendingDepositAssets;
+&nbsp;
+    /// @notice Allows the contract to receive Ether.
+    receive() external payable {}
+&nbsp;
+    /// @notice Sets the address of the vaults registry.
+    /// @param vaultsRegistryAddress_ The new vaults registry address.
+<span class="fstat-no" title="function not covered" >    function setVaultsRegistryAddress(</span>
+        address vaultsRegistryAddress_
+    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(vaultsRegistryAddress_, "vaultsRegistryAddress_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit VaultsRegistryAddressSet(vaultsRegistryAddress_);</span>
+&nbsp;
+        vaultsRegistryAddress = vaultsRegistryAddress_;
+    }
+&nbsp;
+    /// @notice Sets the address of the master token.
+    /// @param masterTokenAddress_ The new master token address.
+<span class="fstat-no" title="function not covered" >    function setMasterTokenAddress(</span>
+        address masterTokenAddress_
+    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(masterTokenAddress_, "masterTokenAddress_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit MasterTokenAddressSet(masterTokenAddress_);</span>
+&nbsp;
+        masterTokenAddress = masterTokenAddress_;
+    }
+&nbsp;
+    /// @notice Sets the address of the vault strategy.
+    /// @param vaultStrategyAddress_ The new strategy address for asset allocation.
+<span class="fstat-no" title="function not covered" >    function setVaultStrategyAddress(</span>
+        address vaultStrategyAddress_
+    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(vaultStrategyAddress_, "vaultStrategyAddress_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit VaultStrategyAddressSet(vaultStrategyAddress_);</span>
+&nbsp;
+        vaultStrategyAddress = vaultStrategyAddress_;
+    }
+&nbsp;
+    /// @notice Sets the address of the withdrawal strategy.
+    /// @param withdrawStrategyAddress_ The new strategy address for handling withdrawals.
+<span class="fstat-no" title="function not covered" >    function setWithdrawStrategyAddress(</span>
+        address withdrawStrategyAddress_
+    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+<span class="cstat-no" title="statement not covered" >        _checkZeroAddress(withdrawStrategyAddress_, "withdrawStrategyAddress_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit WithdrawStrategyAddressSet(withdrawStrategyAddress_);</span>
+&nbsp;
+        withdrawStrategyAddress = withdrawStrategyAddress_;
+    }
+&nbsp;
+    /// @notice Sets whether to perform live valuation during deposit or withdrawal.
+    /// @param status_ True for enabling live valuation, false to disable.
+    /// @param target_ Target operation, 0 for deposit and 1 for withdrawal.
+<span class="fstat-no" title="function not covered" >    function setLiveValuation(bool status_, uint256 target_) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        if (target_ != 0 &amp;&amp; target_ != 1) revert InvalidTarget();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit LiveValuationSet(status_, target_);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (target_ == 0) liveValuationOnDeposit = status_;</span>
+        else liveValuationOnWithdraw = status_;
+    }
+&nbsp;
+    /// @notice Sets the valuationSource to tell the contract where to get prices where oracle is not defined
+    /// @notice valuationSource_ = 1 take price from deposit adapter
+    /// @notice valuationSource_ = 2 take price from withdraw adapter
+    /// @param valuationSource_ The number indicating the valuation source
+<span class="fstat-no" title="function not covered" >    function setValuationSource(uint8 valuationSource_) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        require(valuationSource_ == 1 || valuationSource_ == 2, "Invalid valuationSource_")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit ValuationSourceSet(valuationSource_);</span>
+&nbsp;
+        valuationSource = valuationSource_;
+    }
+&nbsp;
+    /// @notice Pauses the vault's operations, preventing any state-changing functions.
+<span class="fstat-no" title="function not covered" >    function pause() external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _pause()</span>;
+    }
+&nbsp;
+    /// @notice Unpauses the vault's operations, allowing state-changing functions.
+<span class="fstat-no" title="function not covered" >    function unpause() external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _unpause()</span>;
+    }
+&nbsp;
+    /// @dev Internal function to check for zero addresses and revert if necessary.
+<span class="fstat-no" title="function not covered" >    function _checkZeroAddress(address variable_, string memory target_) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (variable_ == address(0)) revert ZeroAddress({target: target_});</span>
+    }
+&nbsp;
+    /// @dev Internal function to check for empty strings and revert if necessary.
+<span class="fstat-no" title="function not covered" >    function _checkEmptyString(string memory variable_, string memory target_) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (bytes(variable_).length == 0) revert EmptyString({target: target_});</span>
+    }
+&nbsp;
+    /// @dev Internal function to check for zero amounts and revert if necessary.
+<span class="fstat-no" title="function not covered" >    function _checkZeroAmount(uint256 variable_, string memory target_) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (variable_ == 0) revert ZeroAmount({target: target_});</span>
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 05 2024 13:25:43 GMT+0300 (Eastern European Summer Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

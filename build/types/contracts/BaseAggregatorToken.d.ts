@@ -1,0 +1,598 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../common";
+export interface BaseAggregatorTokenInterface extends Interface {
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "FEE_MANAGER_ROLE" | "LYSADMIN_MANAGER_ROLE" | "TRANSFERS_MANAGER_ROLE" | "VALUATIONS_MANAGER_ROLE" | "VAULTS_MANAGER_ROLE" | "aggregatorFeeModel" | "allowance" | "approve" | "balanceOf" | "currentSharesPerVault" | "decimals" | "deposit" | "exchangeRate" | "getRoleAdmin" | "getUnderlyingAsset" | "grantRole" | "hasRole" | "maxVaultsPerHolder" | "name" | "pause" | "paused" | "renounceRole" | "revokeRole" | "setAggregatorFeeModel" | "setMaxVaultsPerHolder" | "setTransferStrategy" | "supportsInterface" | "symbol" | "totalSupply" | "transfer" | "transferFrom" | "transferStrategy" | "underlyingAsset" | "underlyingValue" | "unpause" | "updatePortfolioValuation" | "vaultsOf" | "vaultsRegistry" | "vaultsShares" | "withdraw"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "AggregatorFeeModelSet" | "Approval" | "Deposit" | "Initialized" | "MaxVaultsPerHolderSet" | "Paused" | "PortfolioValuationUpdated" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Transfer" | "TransferStrategySet" | "Unpaused" | "Withdrawal"): EventFragment;
+    encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "FEE_MANAGER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "LYSADMIN_MANAGER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "TRANSFERS_MANAGER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "VALUATIONS_MANAGER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "VAULTS_MANAGER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "aggregatorFeeModel", values?: undefined): string;
+    encodeFunctionData(functionFragment: "allowance", values: [AddressLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "approve", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "balanceOf", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "currentSharesPerVault", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
+    encodeFunctionData(functionFragment: "deposit", values: [AddressLike, AddressLike[], BigNumberish[], BigNumberish]): string;
+    encodeFunctionData(functionFragment: "exchangeRate", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "getUnderlyingAsset", values?: undefined): string;
+    encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "maxVaultsPerHolder", values?: undefined): string;
+    encodeFunctionData(functionFragment: "name", values?: undefined): string;
+    encodeFunctionData(functionFragment: "pause", values?: undefined): string;
+    encodeFunctionData(functionFragment: "paused", values?: undefined): string;
+    encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "setAggregatorFeeModel", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "setMaxVaultsPerHolder", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "setTransferStrategy", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+    encodeFunctionData(functionFragment: "totalSupply", values?: undefined): string;
+    encodeFunctionData(functionFragment: "transfer", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "transferFrom", values: [AddressLike, AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "transferStrategy", values?: undefined): string;
+    encodeFunctionData(functionFragment: "underlyingAsset", values?: undefined): string;
+    encodeFunctionData(functionFragment: "underlyingValue", values?: undefined): string;
+    encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
+    encodeFunctionData(functionFragment: "updatePortfolioValuation", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "vaultsOf", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "vaultsRegistry", values?: undefined): string;
+    encodeFunctionData(functionFragment: "vaultsShares", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "withdraw", values: [AddressLike[], BigNumberish[], BigNumberish]): string;
+    decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "FEE_MANAGER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "LYSADMIN_MANAGER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "TRANSFERS_MANAGER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "VALUATIONS_MANAGER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "VAULTS_MANAGER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "aggregatorFeeModel", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "currentSharesPerVault", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "exchangeRate", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getUnderlyingAsset", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "maxVaultsPerHolder", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setAggregatorFeeModel", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setMaxVaultsPerHolder", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setTransferStrategy", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "totalSupply", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "transferFrom", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "transferStrategy", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "underlyingAsset", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "underlyingValue", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "updatePortfolioValuation", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "vaultsOf", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "vaultsRegistry", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "vaultsShares", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
+}
+export declare namespace AggregatorFeeModelSetEvent {
+    type InputTuple = [newAggregatorFeeModel: AddressLike];
+    type OutputTuple = [newAggregatorFeeModel: string];
+    interface OutputObject {
+        newAggregatorFeeModel: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace ApprovalEvent {
+    type InputTuple = [
+        owner: AddressLike,
+        spender: AddressLike,
+        value: BigNumberish
+    ];
+    type OutputTuple = [owner: string, spender: string, value: bigint];
+    interface OutputObject {
+        owner: string;
+        spender: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace DepositEvent {
+    type InputTuple = [
+        sender: AddressLike,
+        receiver: AddressLike,
+        vaults: AddressLike[],
+        amounts: BigNumberish[],
+        totalShares: BigNumberish
+    ];
+    type OutputTuple = [
+        sender: string,
+        receiver: string,
+        vaults: string[],
+        amounts: bigint[],
+        totalShares: bigint
+    ];
+    interface OutputObject {
+        sender: string;
+        receiver: string;
+        vaults: string[];
+        amounts: bigint[];
+        totalShares: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace InitializedEvent {
+    type InputTuple = [version: BigNumberish];
+    type OutputTuple = [version: bigint];
+    interface OutputObject {
+        version: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace MaxVaultsPerHolderSetEvent {
+    type InputTuple = [newValue: BigNumberish];
+    type OutputTuple = [newValue: bigint];
+    interface OutputObject {
+        newValue: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace PausedEvent {
+    type InputTuple = [account: AddressLike];
+    type OutputTuple = [account: string];
+    interface OutputObject {
+        account: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace PortfolioValuationUpdatedEvent {
+    type InputTuple = [tokenHolder: AddressLike];
+    type OutputTuple = [tokenHolder: string];
+    interface OutputObject {
+        tokenHolder: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleAdminChangedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        previousAdminRole: BytesLike,
+        newAdminRole: BytesLike
+    ];
+    type OutputTuple = [
+        role: string,
+        previousAdminRole: string,
+        newAdminRole: string
+    ];
+    interface OutputObject {
+        role: string;
+        previousAdminRole: string;
+        newAdminRole: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleGrantedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        account: AddressLike,
+        sender: AddressLike
+    ];
+    type OutputTuple = [role: string, account: string, sender: string];
+    interface OutputObject {
+        role: string;
+        account: string;
+        sender: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleRevokedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        account: AddressLike,
+        sender: AddressLike
+    ];
+    type OutputTuple = [role: string, account: string, sender: string];
+    interface OutputObject {
+        role: string;
+        account: string;
+        sender: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace TransferEvent {
+    type InputTuple = [
+        from: AddressLike,
+        to: AddressLike,
+        value: BigNumberish
+    ];
+    type OutputTuple = [from: string, to: string, value: bigint];
+    interface OutputObject {
+        from: string;
+        to: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace TransferStrategySetEvent {
+    type InputTuple = [newTransterStrategy: AddressLike];
+    type OutputTuple = [newTransterStrategy: string];
+    interface OutputObject {
+        newTransterStrategy: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace UnpausedEvent {
+    type InputTuple = [account: AddressLike];
+    type OutputTuple = [account: string];
+    interface OutputObject {
+        account: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace WithdrawalEvent {
+    type InputTuple = [
+        from: AddressLike,
+        to: AddressLike,
+        value: BigNumberish
+    ];
+    type OutputTuple = [from: string, to: string, value: bigint];
+    interface OutputObject {
+        from: string;
+        to: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export interface BaseAggregatorToken extends BaseContract {
+    connect(runner?: ContractRunner | null): BaseAggregatorToken;
+    waitForDeployment(): Promise<this>;
+    interface: BaseAggregatorTokenInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
+    FEE_MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
+    LYSADMIN_MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
+    TRANSFERS_MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
+    VALUATIONS_MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
+    VAULTS_MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
+    aggregatorFeeModel: TypedContractMethod<[], [string], "view">;
+    allowance: TypedContractMethod<[
+        owner: AddressLike,
+        spender: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    approve: TypedContractMethod<[
+        spender: AddressLike,
+        value: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    balanceOf: TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    currentSharesPerVault: TypedContractMethod<[
+        tokenHolder_: AddressLike
+    ], [
+        [string[], bigint[]] & {
+            vaults: string[];
+            shares: bigint[];
+        }
+    ], "view">;
+    decimals: TypedContractMethod<[], [bigint], "view">;
+    deposit: TypedContractMethod<[
+        receiver: AddressLike,
+        vaults_: AddressLike[],
+        values_: BigNumberish[],
+        totalValue_: BigNumberish
+    ], [
+        bigint
+    ], "nonpayable">;
+    exchangeRate: TypedContractMethod<[], [bigint], "view">;
+    getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
+    getUnderlyingAsset: TypedContractMethod<[], [string], "view">;
+    grantRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    hasRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        boolean
+    ], "view">;
+    maxVaultsPerHolder: TypedContractMethod<[], [bigint], "view">;
+    name: TypedContractMethod<[], [string], "view">;
+    pause: TypedContractMethod<[], [void], "nonpayable">;
+    paused: TypedContractMethod<[], [boolean], "view">;
+    renounceRole: TypedContractMethod<[
+        role: BytesLike,
+        callerConfirmation: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    revokeRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    setAggregatorFeeModel: TypedContractMethod<[
+        aggregatorFeeModel_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    setMaxVaultsPerHolder: TypedContractMethod<[
+        maxVaultsPerHolder_: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    setTransferStrategy: TypedContractMethod<[
+        transferStrategy_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    supportsInterface: TypedContractMethod<[
+        interfaceId: BytesLike
+    ], [
+        boolean
+    ], "view">;
+    symbol: TypedContractMethod<[], [string], "view">;
+    totalSupply: TypedContractMethod<[], [bigint], "view">;
+    transfer: TypedContractMethod<[
+        to: AddressLike,
+        value: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    transferFrom: TypedContractMethod<[
+        from: AddressLike,
+        to: AddressLike,
+        value: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    transferStrategy: TypedContractMethod<[], [string], "view">;
+    underlyingAsset: TypedContractMethod<[], [string], "view">;
+    underlyingValue: TypedContractMethod<[], [bigint], "view">;
+    unpause: TypedContractMethod<[], [void], "nonpayable">;
+    updatePortfolioValuation: TypedContractMethod<[
+        tokenHolder_: AddressLike
+    ], [
+        boolean
+    ], "nonpayable">;
+    vaultsOf: TypedContractMethod<[
+        tokenHolder_: AddressLike
+    ], [
+        string[]
+    ], "view">;
+    vaultsRegistry: TypedContractMethod<[], [string], "view">;
+    vaultsShares: TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+    withdraw: TypedContractMethod<[
+        vaults_: AddressLike[],
+        assets_: BigNumberish[],
+        maxSlipage: BigNumberish
+    ], [
+        bigint
+    ], "nonpayable">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "FEE_MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "LYSADMIN_MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "TRANSFERS_MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "VALUATIONS_MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "VAULTS_MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "aggregatorFeeModel"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "allowance"): TypedContractMethod<[
+        owner: AddressLike,
+        spender: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "approve"): TypedContractMethod<[
+        spender: AddressLike,
+        value: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "balanceOf"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "currentSharesPerVault"): TypedContractMethod<[
+        tokenHolder_: AddressLike
+    ], [
+        [string[], bigint[]] & {
+            vaults: string[];
+            shares: bigint[];
+        }
+    ], "view">;
+    getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "deposit"): TypedContractMethod<[
+        receiver: AddressLike,
+        vaults_: AddressLike[],
+        values_: BigNumberish[],
+        totalValue_: BigNumberish
+    ], [
+        bigint
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "exchangeRate"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
+    getFunction(nameOrSignature: "getUnderlyingAsset"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "hasRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        boolean
+    ], "view">;
+    getFunction(nameOrSignature: "maxVaultsPerHolder"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "name"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "pause"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "paused"): TypedContractMethod<[], [boolean], "view">;
+    getFunction(nameOrSignature: "renounceRole"): TypedContractMethod<[
+        role: BytesLike,
+        callerConfirmation: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "revokeRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setAggregatorFeeModel"): TypedContractMethod<[
+        aggregatorFeeModel_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setMaxVaultsPerHolder"): TypedContractMethod<[
+        maxVaultsPerHolder_: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setTransferStrategy"): TypedContractMethod<[
+        transferStrategy_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+    getFunction(nameOrSignature: "symbol"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "totalSupply"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "transfer"): TypedContractMethod<[
+        to: AddressLike,
+        value: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "transferFrom"): TypedContractMethod<[
+        from: AddressLike,
+        to: AddressLike,
+        value: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "transferStrategy"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "underlyingAsset"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "underlyingValue"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "unpause"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "updatePortfolioValuation"): TypedContractMethod<[tokenHolder_: AddressLike], [boolean], "nonpayable">;
+    getFunction(nameOrSignature: "vaultsOf"): TypedContractMethod<[tokenHolder_: AddressLike], [string[]], "view">;
+    getFunction(nameOrSignature: "vaultsRegistry"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "vaultsShares"): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "withdraw"): TypedContractMethod<[
+        vaults_: AddressLike[],
+        assets_: BigNumberish[],
+        maxSlipage: BigNumberish
+    ], [
+        bigint
+    ], "nonpayable">;
+    getEvent(key: "AggregatorFeeModelSet"): TypedContractEvent<AggregatorFeeModelSetEvent.InputTuple, AggregatorFeeModelSetEvent.OutputTuple, AggregatorFeeModelSetEvent.OutputObject>;
+    getEvent(key: "Approval"): TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
+    getEvent(key: "Deposit"): TypedContractEvent<DepositEvent.InputTuple, DepositEvent.OutputTuple, DepositEvent.OutputObject>;
+    getEvent(key: "Initialized"): TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+    getEvent(key: "MaxVaultsPerHolderSet"): TypedContractEvent<MaxVaultsPerHolderSetEvent.InputTuple, MaxVaultsPerHolderSetEvent.OutputTuple, MaxVaultsPerHolderSetEvent.OutputObject>;
+    getEvent(key: "Paused"): TypedContractEvent<PausedEvent.InputTuple, PausedEvent.OutputTuple, PausedEvent.OutputObject>;
+    getEvent(key: "PortfolioValuationUpdated"): TypedContractEvent<PortfolioValuationUpdatedEvent.InputTuple, PortfolioValuationUpdatedEvent.OutputTuple, PortfolioValuationUpdatedEvent.OutputObject>;
+    getEvent(key: "RoleAdminChanged"): TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+    getEvent(key: "RoleGranted"): TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+    getEvent(key: "RoleRevoked"): TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+    getEvent(key: "Transfer"): TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+    getEvent(key: "TransferStrategySet"): TypedContractEvent<TransferStrategySetEvent.InputTuple, TransferStrategySetEvent.OutputTuple, TransferStrategySetEvent.OutputObject>;
+    getEvent(key: "Unpaused"): TypedContractEvent<UnpausedEvent.InputTuple, UnpausedEvent.OutputTuple, UnpausedEvent.OutputObject>;
+    getEvent(key: "Withdrawal"): TypedContractEvent<WithdrawalEvent.InputTuple, WithdrawalEvent.OutputTuple, WithdrawalEvent.OutputObject>;
+    filters: {
+        "AggregatorFeeModelSet(address)": TypedContractEvent<AggregatorFeeModelSetEvent.InputTuple, AggregatorFeeModelSetEvent.OutputTuple, AggregatorFeeModelSetEvent.OutputObject>;
+        AggregatorFeeModelSet: TypedContractEvent<AggregatorFeeModelSetEvent.InputTuple, AggregatorFeeModelSetEvent.OutputTuple, AggregatorFeeModelSetEvent.OutputObject>;
+        "Approval(address,address,uint256)": TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
+        Approval: TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
+        "Deposit(address,address,address[],uint256[],uint256)": TypedContractEvent<DepositEvent.InputTuple, DepositEvent.OutputTuple, DepositEvent.OutputObject>;
+        Deposit: TypedContractEvent<DepositEvent.InputTuple, DepositEvent.OutputTuple, DepositEvent.OutputObject>;
+        "Initialized(uint64)": TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+        Initialized: TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+        "MaxVaultsPerHolderSet(uint256)": TypedContractEvent<MaxVaultsPerHolderSetEvent.InputTuple, MaxVaultsPerHolderSetEvent.OutputTuple, MaxVaultsPerHolderSetEvent.OutputObject>;
+        MaxVaultsPerHolderSet: TypedContractEvent<MaxVaultsPerHolderSetEvent.InputTuple, MaxVaultsPerHolderSetEvent.OutputTuple, MaxVaultsPerHolderSetEvent.OutputObject>;
+        "Paused(address)": TypedContractEvent<PausedEvent.InputTuple, PausedEvent.OutputTuple, PausedEvent.OutputObject>;
+        Paused: TypedContractEvent<PausedEvent.InputTuple, PausedEvent.OutputTuple, PausedEvent.OutputObject>;
+        "PortfolioValuationUpdated(address)": TypedContractEvent<PortfolioValuationUpdatedEvent.InputTuple, PortfolioValuationUpdatedEvent.OutputTuple, PortfolioValuationUpdatedEvent.OutputObject>;
+        PortfolioValuationUpdated: TypedContractEvent<PortfolioValuationUpdatedEvent.InputTuple, PortfolioValuationUpdatedEvent.OutputTuple, PortfolioValuationUpdatedEvent.OutputObject>;
+        "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+        RoleAdminChanged: TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+        "RoleGranted(bytes32,address,address)": TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+        RoleGranted: TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+        "RoleRevoked(bytes32,address,address)": TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+        RoleRevoked: TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+        "Transfer(address,address,uint256)": TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+        Transfer: TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+        "TransferStrategySet(address)": TypedContractEvent<TransferStrategySetEvent.InputTuple, TransferStrategySetEvent.OutputTuple, TransferStrategySetEvent.OutputObject>;
+        TransferStrategySet: TypedContractEvent<TransferStrategySetEvent.InputTuple, TransferStrategySetEvent.OutputTuple, TransferStrategySetEvent.OutputObject>;
+        "Unpaused(address)": TypedContractEvent<UnpausedEvent.InputTuple, UnpausedEvent.OutputTuple, UnpausedEvent.OutputObject>;
+        Unpaused: TypedContractEvent<UnpausedEvent.InputTuple, UnpausedEvent.OutputTuple, UnpausedEvent.OutputObject>;
+        "Withdrawal(address,address,uint256)": TypedContractEvent<WithdrawalEvent.InputTuple, WithdrawalEvent.OutputTuple, WithdrawalEvent.OutputObject>;
+        Withdrawal: TypedContractEvent<WithdrawalEvent.InputTuple, WithdrawalEvent.OutputTuple, WithdrawalEvent.OutputObject>;
+    };
+}
+//# sourceMappingURL=BaseAggregatorToken.d.ts.map

@@ -1,0 +1,78 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "UniswapV3RouterMock",
+  "sourceName": "contracts/_mocks/adapters/UniswapV3RouterMock.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes",
+              "name": "path",
+              "type": "bytes"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountOut",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountInMaximum",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct UniswapV3RouterMock.ExactOutputParams",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "name": "exactOutput",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "output",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "setExactOutput",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610118806100206000396000f3fe60806040526004361060305760003560e01c806309b81346146035578063747ca476146059578063f20eaeb8146077575b600080fd5b60476040366004608b565b5060005490565b60405190815260200160405180910390f35b348015606457600080fd5b506075607036600460ca565b600055565b005b348015608257600080fd5b50604760005481565b600060208284031215609c57600080fd5b813567ffffffffffffffff81111560b257600080fd5b82016080818503121560c357600080fd5b9392505050565b60006020828403121560db57600080fd5b503591905056fea2646970667358221220b74d77385eadd450e6f973de73fc3b60e78141b65a4b88e0d8ed448221f8159864736f6c63430008180033",
+  "deployedBytecode": "0x60806040526004361060305760003560e01c806309b81346146035578063747ca476146059578063f20eaeb8146077575b600080fd5b60476040366004608b565b5060005490565b60405190815260200160405180910390f35b348015606457600080fd5b506075607036600460ca565b600055565b005b348015608257600080fd5b50604760005481565b600060208284031215609c57600080fd5b813567ffffffffffffffff81111560b257600080fd5b82016080818503121560c357600080fd5b9392505050565b60006020828403121560db57600080fd5b503591905056fea2646970667358221220b74d77385eadd450e6f973de73fc3b60e78141b65a4b88e0d8ed448221f8159864736f6c63430008180033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

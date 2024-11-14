@@ -1,0 +1,758 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
+export interface StrSimpleReStakingV2Interface extends Interface {
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "DEPLOYMENT_ADAPTERS_QTY" | "REVERT_MSG" | "VAULT_MANAGER_ROLE" | "WITHDRAW_ADAPTERS_QTY" | "adaptersDeployPath" | "adaptersWithdrawPath" | "addedMethodStrategyV2" | "addedVariableStrategyV2" | "buildPath" | "deployedAssetsValue" | "executeDeploymentStrategy" | "executeHarvest" | "executeWithdrawStrategy" | "getDeployedAssetsValue" | "getFirstDepositAdapter" | "getRoleAdmin" | "getTokenPrice" | "grantRole" | "hasRole" | "initialize" | "liquidTokenAddress" | "pause" | "paused" | "priceFeedPerToken" | "renounceRole" | "revokeRole" | "setAdaptersDeployPath" | "setAdaptersWithdrawPath" | "setLiquidTokenAddress" | "setPriceFeedPerToken" | "setStrategyName" | "setVaultAddress" | "setWithdrawStrategyAddress" | "setWrappedLiquidTokenAddress" | "strategyName" | "supportsInterface" | "swapPath" | "unpause" | "unwrapToken" | "updateDeployedAssetVaule" | "vaultAddress" | "withdrawStrategyAddress" | "wrapToken" | "wrappedLiquidTokenAddress"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "AdaptersDeployPathSet" | "AdaptersWithdrawPathSet" | "DeployedAssetsValueUpdated" | "DeploymentStrategyExecuted" | "Initialized" | "LiquidTokenSet" | "PathUpdated" | "Paused" | "PriceFeedSet" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "StrategyNameSet" | "TokenWrapperSet" | "Unpaused" | "UnwrappedAmount" | "VaultAddressSet" | "WithdrawStrategyAddressSet" | "WithdrawStrategyExecuted" | "WrappedAmount"): EventFragment;
+    encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "DEPLOYMENT_ADAPTERS_QTY", values?: undefined): string;
+    encodeFunctionData(functionFragment: "REVERT_MSG", values?: undefined): string;
+    encodeFunctionData(functionFragment: "VAULT_MANAGER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "WITHDRAW_ADAPTERS_QTY", values?: undefined): string;
+    encodeFunctionData(functionFragment: "adaptersDeployPath", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "adaptersWithdrawPath", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "addedMethodStrategyV2", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "addedVariableStrategyV2", values?: undefined): string;
+    encodeFunctionData(functionFragment: "buildPath", values: [AddressLike[], BigNumberish[]]): string;
+    encodeFunctionData(functionFragment: "deployedAssetsValue", values?: undefined): string;
+    encodeFunctionData(functionFragment: "executeDeploymentStrategy", values: [AddressLike, AddressLike, AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "executeHarvest", values?: undefined): string;
+    encodeFunctionData(functionFragment: "executeWithdrawStrategy", values: [AddressLike, AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getDeployedAssetsValue", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getFirstDepositAdapter", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "getTokenPrice", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "initialize", values: [AddressLike, AddressLike, AddressLike[], AddressLike[], string]): string;
+    encodeFunctionData(functionFragment: "liquidTokenAddress", values?: undefined): string;
+    encodeFunctionData(functionFragment: "pause", values?: undefined): string;
+    encodeFunctionData(functionFragment: "paused", values?: undefined): string;
+    encodeFunctionData(functionFragment: "priceFeedPerToken", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "setAdaptersDeployPath", values: [AddressLike[]]): string;
+    encodeFunctionData(functionFragment: "setAdaptersWithdrawPath", values: [AddressLike[]]): string;
+    encodeFunctionData(functionFragment: "setLiquidTokenAddress", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "setPriceFeedPerToken", values: [AddressLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "setStrategyName", values: [string]): string;
+    encodeFunctionData(functionFragment: "setVaultAddress", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "setWithdrawStrategyAddress", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "setWrappedLiquidTokenAddress", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "strategyName", values?: undefined): string;
+    encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "swapPath", values?: undefined): string;
+    encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
+    encodeFunctionData(functionFragment: "unwrapToken", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "updateDeployedAssetVaule", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "vaultAddress", values?: undefined): string;
+    encodeFunctionData(functionFragment: "withdrawStrategyAddress", values?: undefined): string;
+    encodeFunctionData(functionFragment: "wrapToken", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "wrappedLiquidTokenAddress", values?: undefined): string;
+    decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "DEPLOYMENT_ADAPTERS_QTY", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "REVERT_MSG", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "VAULT_MANAGER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "WITHDRAW_ADAPTERS_QTY", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "adaptersDeployPath", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "adaptersWithdrawPath", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "addedMethodStrategyV2", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "addedVariableStrategyV2", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "buildPath", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "deployedAssetsValue", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "executeDeploymentStrategy", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "executeHarvest", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "executeWithdrawStrategy", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getDeployedAssetsValue", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getFirstDepositAdapter", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getTokenPrice", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "liquidTokenAddress", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "priceFeedPerToken", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setAdaptersDeployPath", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setAdaptersWithdrawPath", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setLiquidTokenAddress", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setPriceFeedPerToken", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setStrategyName", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setVaultAddress", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setWithdrawStrategyAddress", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setWrappedLiquidTokenAddress", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "strategyName", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "swapPath", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "unwrapToken", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "updateDeployedAssetVaule", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "vaultAddress", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "withdrawStrategyAddress", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "wrapToken", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "wrappedLiquidTokenAddress", data: BytesLike): Result;
+}
+export declare namespace AdaptersDeployPathSetEvent {
+    type InputTuple = [newDeployPath: AddressLike[]];
+    type OutputTuple = [newDeployPath: string[]];
+    interface OutputObject {
+        newDeployPath: string[];
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace AdaptersWithdrawPathSetEvent {
+    type InputTuple = [newWithdrawPath: AddressLike[]];
+    type OutputTuple = [newWithdrawPath: string[]];
+    interface OutputObject {
+        newWithdrawPath: string[];
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace DeployedAssetsValueUpdatedEvent {
+    type InputTuple = [
+        liquidTokenAddress: AddressLike,
+        deployedAssetsValueETH: BigNumberish,
+        strategyContract: AddressLike
+    ];
+    type OutputTuple = [
+        liquidTokenAddress: string,
+        deployedAssetsValueETH: bigint,
+        strategyContract: string
+    ];
+    interface OutputObject {
+        liquidTokenAddress: string;
+        deployedAssetsValueETH: bigint;
+        strategyContract: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace DeploymentStrategyExecutedEvent {
+    type InputTuple = [
+        assets: AddressLike,
+        assetsAmount: BigNumberish,
+        liquidToken: AddressLike,
+        liquidTokenAmount: BigNumberish
+    ];
+    type OutputTuple = [
+        assets: string,
+        assetsAmount: bigint,
+        liquidToken: string,
+        liquidTokenAmount: bigint
+    ];
+    interface OutputObject {
+        assets: string;
+        assetsAmount: bigint;
+        liquidToken: string;
+        liquidTokenAmount: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace InitializedEvent {
+    type InputTuple = [version: BigNumberish];
+    type OutputTuple = [version: bigint];
+    interface OutputObject {
+        version: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace LiquidTokenSetEvent {
+    type InputTuple = [arg0: AddressLike];
+    type OutputTuple = [arg0: string];
+    interface OutputObject {
+        arg0: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace PathUpdatedEvent {
+    type InputTuple = [path: BytesLike];
+    type OutputTuple = [path: string];
+    interface OutputObject {
+        path: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace PausedEvent {
+    type InputTuple = [account: AddressLike];
+    type OutputTuple = [account: string];
+    interface OutputObject {
+        account: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace PriceFeedSetEvent {
+    type InputTuple = [token: AddressLike, priceFeed: AddressLike];
+    type OutputTuple = [token: string, priceFeed: string];
+    interface OutputObject {
+        token: string;
+        priceFeed: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleAdminChangedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        previousAdminRole: BytesLike,
+        newAdminRole: BytesLike
+    ];
+    type OutputTuple = [
+        role: string,
+        previousAdminRole: string,
+        newAdminRole: string
+    ];
+    interface OutputObject {
+        role: string;
+        previousAdminRole: string;
+        newAdminRole: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleGrantedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        account: AddressLike,
+        sender: AddressLike
+    ];
+    type OutputTuple = [role: string, account: string, sender: string];
+    interface OutputObject {
+        role: string;
+        account: string;
+        sender: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace RoleRevokedEvent {
+    type InputTuple = [
+        role: BytesLike,
+        account: AddressLike,
+        sender: AddressLike
+    ];
+    type OutputTuple = [role: string, account: string, sender: string];
+    interface OutputObject {
+        role: string;
+        account: string;
+        sender: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace StrategyNameSetEvent {
+    type InputTuple = [name: string];
+    type OutputTuple = [name: string];
+    interface OutputObject {
+        name: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace TokenWrapperSetEvent {
+    type InputTuple = [arg0: AddressLike];
+    type OutputTuple = [arg0: string];
+    interface OutputObject {
+        arg0: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace UnpausedEvent {
+    type InputTuple = [account: AddressLike];
+    type OutputTuple = [account: string];
+    interface OutputObject {
+        account: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace UnwrappedAmountEvent {
+    type InputTuple = [
+        wrappedLiquidTokenAddress: AddressLike,
+        wrappedAmount: BigNumberish,
+        liquidTokenAddress: AddressLike,
+        unwrappedAmount: BigNumberish
+    ];
+    type OutputTuple = [
+        wrappedLiquidTokenAddress: string,
+        wrappedAmount: bigint,
+        liquidTokenAddress: string,
+        unwrappedAmount: bigint
+    ];
+    interface OutputObject {
+        wrappedLiquidTokenAddress: string;
+        wrappedAmount: bigint;
+        liquidTokenAddress: string;
+        unwrappedAmount: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace VaultAddressSetEvent {
+    type InputTuple = [vaultAddress: AddressLike];
+    type OutputTuple = [vaultAddress: string];
+    interface OutputObject {
+        vaultAddress: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace WithdrawStrategyAddressSetEvent {
+    type InputTuple = [strategyAddress: AddressLike];
+    type OutputTuple = [strategyAddress: string];
+    interface OutputObject {
+        strategyAddress: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace WithdrawStrategyExecutedEvent {
+    type InputTuple = [
+        receiver: AddressLike,
+        asset: AddressLike,
+        assetsAmount: BigNumberish
+    ];
+    type OutputTuple = [
+        receiver: string,
+        asset: string,
+        assetsAmount: bigint
+    ];
+    interface OutputObject {
+        receiver: string;
+        asset: string;
+        assetsAmount: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace WrappedAmountEvent {
+    type InputTuple = [
+        liquidTokenAddress: AddressLike,
+        unwrappedAmount: BigNumberish,
+        wrappedLiquidTokenAddress: AddressLike,
+        wrappedAmount: BigNumberish
+    ];
+    type OutputTuple = [
+        liquidTokenAddress: string,
+        unwrappedAmount: bigint,
+        wrappedLiquidTokenAddress: string,
+        wrappedAmount: bigint
+    ];
+    interface OutputObject {
+        liquidTokenAddress: string;
+        unwrappedAmount: bigint;
+        wrappedLiquidTokenAddress: string;
+        wrappedAmount: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export interface StrSimpleReStakingV2 extends BaseContract {
+    connect(runner?: ContractRunner | null): StrSimpleReStakingV2;
+    waitForDeployment(): Promise<this>;
+    interface: StrSimpleReStakingV2Interface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
+    DEPLOYMENT_ADAPTERS_QTY: TypedContractMethod<[], [bigint], "view">;
+    REVERT_MSG: TypedContractMethod<[], [string], "view">;
+    VAULT_MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
+    WITHDRAW_ADAPTERS_QTY: TypedContractMethod<[], [bigint], "view">;
+    adaptersDeployPath: TypedContractMethod<[
+        arg0: BigNumberish
+    ], [
+        string
+    ], "view">;
+    adaptersWithdrawPath: TypedContractMethod<[
+        arg0: BigNumberish
+    ], [
+        string
+    ], "view">;
+    addedMethodStrategyV2: TypedContractMethod<[
+        _newValue: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    addedVariableStrategyV2: TypedContractMethod<[], [bigint], "view">;
+    buildPath: TypedContractMethod<[
+        tokens_: AddressLike[],
+        fees_: BigNumberish[]
+    ], [
+        void
+    ], "nonpayable">;
+    deployedAssetsValue: TypedContractMethod<[], [bigint], "view">;
+    executeDeploymentStrategy: TypedContractMethod<[
+        sender_: AddressLike,
+        receiver_: AddressLike,
+        asset_: AddressLike,
+        assetsAmount_: BigNumberish
+    ], [
+        [string, bigint]
+    ], "nonpayable">;
+    executeHarvest: TypedContractMethod<[], [[string, bigint]], "nonpayable">;
+    executeWithdrawStrategy: TypedContractMethod<[
+        receiver_: AddressLike,
+        asset_: AddressLike,
+        assetsAmount_: BigNumberish
+    ], [
+        [string, bigint]
+    ], "nonpayable">;
+    getDeployedAssetsValue: TypedContractMethod<[], [bigint], "view">;
+    getFirstDepositAdapter: TypedContractMethod<[], [string], "view">;
+    getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
+    getTokenPrice: TypedContractMethod<[
+        token_: AddressLike,
+        source_: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    grantRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    hasRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        boolean
+    ], "view">;
+    initialize: TypedContractMethod<[
+        vaultAddress_: AddressLike,
+        liquidTokenAddress_: AddressLike,
+        adaptersDeployPath_: AddressLike[],
+        adaptersWithdrawPath_: AddressLike[],
+        strategyName_: string
+    ], [
+        void
+    ], "nonpayable">;
+    liquidTokenAddress: TypedContractMethod<[], [string], "view">;
+    pause: TypedContractMethod<[], [void], "nonpayable">;
+    paused: TypedContractMethod<[], [boolean], "view">;
+    priceFeedPerToken: TypedContractMethod<[
+        token: AddressLike
+    ], [
+        string
+    ], "view">;
+    renounceRole: TypedContractMethod<[
+        role: BytesLike,
+        callerConfirmation: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    revokeRole: TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    setAdaptersDeployPath: TypedContractMethod<[
+        adaptersDeployPath_: AddressLike[]
+    ], [
+        void
+    ], "nonpayable">;
+    setAdaptersWithdrawPath: TypedContractMethod<[
+        adaptersWithdrawPath_: AddressLike[]
+    ], [
+        void
+    ], "nonpayable">;
+    setLiquidTokenAddress: TypedContractMethod<[
+        liquidTokenAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    setPriceFeedPerToken: TypedContractMethod<[
+        token_: AddressLike,
+        feed_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    setStrategyName: TypedContractMethod<[
+        strategyName_: string
+    ], [
+        void
+    ], "nonpayable">;
+    setVaultAddress: TypedContractMethod<[
+        vaultAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    setWithdrawStrategyAddress: TypedContractMethod<[
+        withdrawStrategyAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    setWrappedLiquidTokenAddress: TypedContractMethod<[
+        wrappedLiquidTokenAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    strategyName: TypedContractMethod<[], [string], "view">;
+    supportsInterface: TypedContractMethod<[
+        interfaceId: BytesLike
+    ], [
+        boolean
+    ], "view">;
+    swapPath: TypedContractMethod<[], [string], "view">;
+    unpause: TypedContractMethod<[], [void], "nonpayable">;
+    unwrapToken: TypedContractMethod<[
+        amount_: BigNumberish
+    ], [
+        bigint
+    ], "nonpayable">;
+    updateDeployedAssetVaule: TypedContractMethod<[
+        source_: BigNumberish
+    ], [
+        bigint
+    ], "nonpayable">;
+    vaultAddress: TypedContractMethod<[], [string], "view">;
+    withdrawStrategyAddress: TypedContractMethod<[], [string], "view">;
+    wrapToken: TypedContractMethod<[
+        amount_: BigNumberish
+    ], [
+        bigint
+    ], "nonpayable">;
+    wrappedLiquidTokenAddress: TypedContractMethod<[], [string], "view">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "DEPLOYMENT_ADAPTERS_QTY"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "REVERT_MSG"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "VAULT_MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "WITHDRAW_ADAPTERS_QTY"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "adaptersDeployPath"): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+    getFunction(nameOrSignature: "adaptersWithdrawPath"): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+    getFunction(nameOrSignature: "addedMethodStrategyV2"): TypedContractMethod<[_newValue: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "addedVariableStrategyV2"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "buildPath"): TypedContractMethod<[
+        tokens_: AddressLike[],
+        fees_: BigNumberish[]
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "deployedAssetsValue"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "executeDeploymentStrategy"): TypedContractMethod<[
+        sender_: AddressLike,
+        receiver_: AddressLike,
+        asset_: AddressLike,
+        assetsAmount_: BigNumberish
+    ], [
+        [string, bigint]
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "executeHarvest"): TypedContractMethod<[], [[string, bigint]], "nonpayable">;
+    getFunction(nameOrSignature: "executeWithdrawStrategy"): TypedContractMethod<[
+        receiver_: AddressLike,
+        asset_: AddressLike,
+        assetsAmount_: BigNumberish
+    ], [
+        [string, bigint]
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "getDeployedAssetsValue"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "getFirstDepositAdapter"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
+    getFunction(nameOrSignature: "getTokenPrice"): TypedContractMethod<[
+        token_: AddressLike,
+        source_: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "hasRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        boolean
+    ], "view">;
+    getFunction(nameOrSignature: "initialize"): TypedContractMethod<[
+        vaultAddress_: AddressLike,
+        liquidTokenAddress_: AddressLike,
+        adaptersDeployPath_: AddressLike[],
+        adaptersWithdrawPath_: AddressLike[],
+        strategyName_: string
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "liquidTokenAddress"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "pause"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "paused"): TypedContractMethod<[], [boolean], "view">;
+    getFunction(nameOrSignature: "priceFeedPerToken"): TypedContractMethod<[token: AddressLike], [string], "view">;
+    getFunction(nameOrSignature: "renounceRole"): TypedContractMethod<[
+        role: BytesLike,
+        callerConfirmation: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "revokeRole"): TypedContractMethod<[
+        role: BytesLike,
+        account: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setAdaptersDeployPath"): TypedContractMethod<[
+        adaptersDeployPath_: AddressLike[]
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setAdaptersWithdrawPath"): TypedContractMethod<[
+        adaptersWithdrawPath_: AddressLike[]
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setLiquidTokenAddress"): TypedContractMethod<[
+        liquidTokenAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setPriceFeedPerToken"): TypedContractMethod<[
+        token_: AddressLike,
+        feed_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setStrategyName"): TypedContractMethod<[strategyName_: string], [void], "nonpayable">;
+    getFunction(nameOrSignature: "setVaultAddress"): TypedContractMethod<[vaultAddress_: AddressLike], [void], "nonpayable">;
+    getFunction(nameOrSignature: "setWithdrawStrategyAddress"): TypedContractMethod<[
+        withdrawStrategyAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setWrappedLiquidTokenAddress"): TypedContractMethod<[
+        wrappedLiquidTokenAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "strategyName"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+    getFunction(nameOrSignature: "swapPath"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "unpause"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "unwrapToken"): TypedContractMethod<[amount_: BigNumberish], [bigint], "nonpayable">;
+    getFunction(nameOrSignature: "updateDeployedAssetVaule"): TypedContractMethod<[source_: BigNumberish], [bigint], "nonpayable">;
+    getFunction(nameOrSignature: "vaultAddress"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "withdrawStrategyAddress"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "wrapToken"): TypedContractMethod<[amount_: BigNumberish], [bigint], "nonpayable">;
+    getFunction(nameOrSignature: "wrappedLiquidTokenAddress"): TypedContractMethod<[], [string], "view">;
+    getEvent(key: "AdaptersDeployPathSet"): TypedContractEvent<AdaptersDeployPathSetEvent.InputTuple, AdaptersDeployPathSetEvent.OutputTuple, AdaptersDeployPathSetEvent.OutputObject>;
+    getEvent(key: "AdaptersWithdrawPathSet"): TypedContractEvent<AdaptersWithdrawPathSetEvent.InputTuple, AdaptersWithdrawPathSetEvent.OutputTuple, AdaptersWithdrawPathSetEvent.OutputObject>;
+    getEvent(key: "DeployedAssetsValueUpdated"): TypedContractEvent<DeployedAssetsValueUpdatedEvent.InputTuple, DeployedAssetsValueUpdatedEvent.OutputTuple, DeployedAssetsValueUpdatedEvent.OutputObject>;
+    getEvent(key: "DeploymentStrategyExecuted"): TypedContractEvent<DeploymentStrategyExecutedEvent.InputTuple, DeploymentStrategyExecutedEvent.OutputTuple, DeploymentStrategyExecutedEvent.OutputObject>;
+    getEvent(key: "Initialized"): TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+    getEvent(key: "LiquidTokenSet"): TypedContractEvent<LiquidTokenSetEvent.InputTuple, LiquidTokenSetEvent.OutputTuple, LiquidTokenSetEvent.OutputObject>;
+    getEvent(key: "PathUpdated"): TypedContractEvent<PathUpdatedEvent.InputTuple, PathUpdatedEvent.OutputTuple, PathUpdatedEvent.OutputObject>;
+    getEvent(key: "Paused"): TypedContractEvent<PausedEvent.InputTuple, PausedEvent.OutputTuple, PausedEvent.OutputObject>;
+    getEvent(key: "PriceFeedSet"): TypedContractEvent<PriceFeedSetEvent.InputTuple, PriceFeedSetEvent.OutputTuple, PriceFeedSetEvent.OutputObject>;
+    getEvent(key: "RoleAdminChanged"): TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+    getEvent(key: "RoleGranted"): TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+    getEvent(key: "RoleRevoked"): TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+    getEvent(key: "StrategyNameSet"): TypedContractEvent<StrategyNameSetEvent.InputTuple, StrategyNameSetEvent.OutputTuple, StrategyNameSetEvent.OutputObject>;
+    getEvent(key: "TokenWrapperSet"): TypedContractEvent<TokenWrapperSetEvent.InputTuple, TokenWrapperSetEvent.OutputTuple, TokenWrapperSetEvent.OutputObject>;
+    getEvent(key: "Unpaused"): TypedContractEvent<UnpausedEvent.InputTuple, UnpausedEvent.OutputTuple, UnpausedEvent.OutputObject>;
+    getEvent(key: "UnwrappedAmount"): TypedContractEvent<UnwrappedAmountEvent.InputTuple, UnwrappedAmountEvent.OutputTuple, UnwrappedAmountEvent.OutputObject>;
+    getEvent(key: "VaultAddressSet"): TypedContractEvent<VaultAddressSetEvent.InputTuple, VaultAddressSetEvent.OutputTuple, VaultAddressSetEvent.OutputObject>;
+    getEvent(key: "WithdrawStrategyAddressSet"): TypedContractEvent<WithdrawStrategyAddressSetEvent.InputTuple, WithdrawStrategyAddressSetEvent.OutputTuple, WithdrawStrategyAddressSetEvent.OutputObject>;
+    getEvent(key: "WithdrawStrategyExecuted"): TypedContractEvent<WithdrawStrategyExecutedEvent.InputTuple, WithdrawStrategyExecutedEvent.OutputTuple, WithdrawStrategyExecutedEvent.OutputObject>;
+    getEvent(key: "WrappedAmount"): TypedContractEvent<WrappedAmountEvent.InputTuple, WrappedAmountEvent.OutputTuple, WrappedAmountEvent.OutputObject>;
+    filters: {
+        "AdaptersDeployPathSet(address[])": TypedContractEvent<AdaptersDeployPathSetEvent.InputTuple, AdaptersDeployPathSetEvent.OutputTuple, AdaptersDeployPathSetEvent.OutputObject>;
+        AdaptersDeployPathSet: TypedContractEvent<AdaptersDeployPathSetEvent.InputTuple, AdaptersDeployPathSetEvent.OutputTuple, AdaptersDeployPathSetEvent.OutputObject>;
+        "AdaptersWithdrawPathSet(address[])": TypedContractEvent<AdaptersWithdrawPathSetEvent.InputTuple, AdaptersWithdrawPathSetEvent.OutputTuple, AdaptersWithdrawPathSetEvent.OutputObject>;
+        AdaptersWithdrawPathSet: TypedContractEvent<AdaptersWithdrawPathSetEvent.InputTuple, AdaptersWithdrawPathSetEvent.OutputTuple, AdaptersWithdrawPathSetEvent.OutputObject>;
+        "DeployedAssetsValueUpdated(address,uint256,address)": TypedContractEvent<DeployedAssetsValueUpdatedEvent.InputTuple, DeployedAssetsValueUpdatedEvent.OutputTuple, DeployedAssetsValueUpdatedEvent.OutputObject>;
+        DeployedAssetsValueUpdated: TypedContractEvent<DeployedAssetsValueUpdatedEvent.InputTuple, DeployedAssetsValueUpdatedEvent.OutputTuple, DeployedAssetsValueUpdatedEvent.OutputObject>;
+        "DeploymentStrategyExecuted(address,uint256,address,uint256)": TypedContractEvent<DeploymentStrategyExecutedEvent.InputTuple, DeploymentStrategyExecutedEvent.OutputTuple, DeploymentStrategyExecutedEvent.OutputObject>;
+        DeploymentStrategyExecuted: TypedContractEvent<DeploymentStrategyExecutedEvent.InputTuple, DeploymentStrategyExecutedEvent.OutputTuple, DeploymentStrategyExecutedEvent.OutputObject>;
+        "Initialized(uint64)": TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+        Initialized: TypedContractEvent<InitializedEvent.InputTuple, InitializedEvent.OutputTuple, InitializedEvent.OutputObject>;
+        "LiquidTokenSet(address)": TypedContractEvent<LiquidTokenSetEvent.InputTuple, LiquidTokenSetEvent.OutputTuple, LiquidTokenSetEvent.OutputObject>;
+        LiquidTokenSet: TypedContractEvent<LiquidTokenSetEvent.InputTuple, LiquidTokenSetEvent.OutputTuple, LiquidTokenSetEvent.OutputObject>;
+        "PathUpdated(bytes)": TypedContractEvent<PathUpdatedEvent.InputTuple, PathUpdatedEvent.OutputTuple, PathUpdatedEvent.OutputObject>;
+        PathUpdated: TypedContractEvent<PathUpdatedEvent.InputTuple, PathUpdatedEvent.OutputTuple, PathUpdatedEvent.OutputObject>;
+        "Paused(address)": TypedContractEvent<PausedEvent.InputTuple, PausedEvent.OutputTuple, PausedEvent.OutputObject>;
+        Paused: TypedContractEvent<PausedEvent.InputTuple, PausedEvent.OutputTuple, PausedEvent.OutputObject>;
+        "PriceFeedSet(address,address)": TypedContractEvent<PriceFeedSetEvent.InputTuple, PriceFeedSetEvent.OutputTuple, PriceFeedSetEvent.OutputObject>;
+        PriceFeedSet: TypedContractEvent<PriceFeedSetEvent.InputTuple, PriceFeedSetEvent.OutputTuple, PriceFeedSetEvent.OutputObject>;
+        "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+        RoleAdminChanged: TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
+        "RoleGranted(bytes32,address,address)": TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+        RoleGranted: TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
+        "RoleRevoked(bytes32,address,address)": TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+        RoleRevoked: TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
+        "StrategyNameSet(string)": TypedContractEvent<StrategyNameSetEvent.InputTuple, StrategyNameSetEvent.OutputTuple, StrategyNameSetEvent.OutputObject>;
+        StrategyNameSet: TypedContractEvent<StrategyNameSetEvent.InputTuple, StrategyNameSetEvent.OutputTuple, StrategyNameSetEvent.OutputObject>;
+        "TokenWrapperSet(address)": TypedContractEvent<TokenWrapperSetEvent.InputTuple, TokenWrapperSetEvent.OutputTuple, TokenWrapperSetEvent.OutputObject>;
+        TokenWrapperSet: TypedContractEvent<TokenWrapperSetEvent.InputTuple, TokenWrapperSetEvent.OutputTuple, TokenWrapperSetEvent.OutputObject>;
+        "Unpaused(address)": TypedContractEvent<UnpausedEvent.InputTuple, UnpausedEvent.OutputTuple, UnpausedEvent.OutputObject>;
+        Unpaused: TypedContractEvent<UnpausedEvent.InputTuple, UnpausedEvent.OutputTuple, UnpausedEvent.OutputObject>;
+        "UnwrappedAmount(address,uint256,address,uint256)": TypedContractEvent<UnwrappedAmountEvent.InputTuple, UnwrappedAmountEvent.OutputTuple, UnwrappedAmountEvent.OutputObject>;
+        UnwrappedAmount: TypedContractEvent<UnwrappedAmountEvent.InputTuple, UnwrappedAmountEvent.OutputTuple, UnwrappedAmountEvent.OutputObject>;
+        "VaultAddressSet(address)": TypedContractEvent<VaultAddressSetEvent.InputTuple, VaultAddressSetEvent.OutputTuple, VaultAddressSetEvent.OutputObject>;
+        VaultAddressSet: TypedContractEvent<VaultAddressSetEvent.InputTuple, VaultAddressSetEvent.OutputTuple, VaultAddressSetEvent.OutputObject>;
+        "WithdrawStrategyAddressSet(address)": TypedContractEvent<WithdrawStrategyAddressSetEvent.InputTuple, WithdrawStrategyAddressSetEvent.OutputTuple, WithdrawStrategyAddressSetEvent.OutputObject>;
+        WithdrawStrategyAddressSet: TypedContractEvent<WithdrawStrategyAddressSetEvent.InputTuple, WithdrawStrategyAddressSetEvent.OutputTuple, WithdrawStrategyAddressSetEvent.OutputObject>;
+        "WithdrawStrategyExecuted(address,address,uint256)": TypedContractEvent<WithdrawStrategyExecutedEvent.InputTuple, WithdrawStrategyExecutedEvent.OutputTuple, WithdrawStrategyExecutedEvent.OutputObject>;
+        WithdrawStrategyExecuted: TypedContractEvent<WithdrawStrategyExecutedEvent.InputTuple, WithdrawStrategyExecutedEvent.OutputTuple, WithdrawStrategyExecutedEvent.OutputObject>;
+        "WrappedAmount(address,uint256,address,uint256)": TypedContractEvent<WrappedAmountEvent.InputTuple, WrappedAmountEvent.OutputTuple, WrappedAmountEvent.OutputObject>;
+        WrappedAmount: TypedContractEvent<WrappedAmountEvent.InputTuple, WrappedAmountEvent.OutputTuple, WrappedAmountEvent.OutputObject>;
+    };
+}
+//# sourceMappingURL=StrSimpleReStakingV2.d.ts.map

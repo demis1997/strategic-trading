@@ -1,0 +1,102 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../../common";
+export interface KelpMockInterface extends Interface {
+    getFunction(nameOrSignature: "assetCurrentLimit" | "depositAsset" | "getAssetCurrentLimit" | "getRsETHAmountToMint" | "minAmountToDeposit" | "rsETH" | "setAssetCurrentLimit" | "setRsETHAmountToMint" | "setminAmountToDeposit" | "setrsETHAmountToMint"): FunctionFragment;
+    encodeFunctionData(functionFragment: "assetCurrentLimit", values?: undefined): string;
+    encodeFunctionData(functionFragment: "depositAsset", values: [AddressLike, BigNumberish, BigNumberish, string]): string;
+    encodeFunctionData(functionFragment: "getAssetCurrentLimit", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "getRsETHAmountToMint", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "minAmountToDeposit", values?: undefined): string;
+    encodeFunctionData(functionFragment: "rsETH", values?: undefined): string;
+    encodeFunctionData(functionFragment: "setAssetCurrentLimit", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "setRsETHAmountToMint", values?: undefined): string;
+    encodeFunctionData(functionFragment: "setminAmountToDeposit", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "setrsETHAmountToMint", values: [BigNumberish]): string;
+    decodeFunctionResult(functionFragment: "assetCurrentLimit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "depositAsset", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getAssetCurrentLimit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getRsETHAmountToMint", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "minAmountToDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "rsETH", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setAssetCurrentLimit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setRsETHAmountToMint", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setminAmountToDeposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setrsETHAmountToMint", data: BytesLike): Result;
+}
+export interface KelpMock extends BaseContract {
+    connect(runner?: ContractRunner | null): KelpMock;
+    waitForDeployment(): Promise<this>;
+    interface: KelpMockInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    assetCurrentLimit: TypedContractMethod<[], [bigint], "view">;
+    depositAsset: TypedContractMethod<[
+        arg0: AddressLike,
+        arg1: BigNumberish,
+        arg2: BigNumberish,
+        arg3: string
+    ], [
+        void
+    ], "nonpayable">;
+    getAssetCurrentLimit: TypedContractMethod<[
+        arg0: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    getRsETHAmountToMint: TypedContractMethod<[
+        arg0: AddressLike,
+        arg1: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    minAmountToDeposit: TypedContractMethod<[], [bigint], "view">;
+    rsETH: TypedContractMethod<[], [string], "view">;
+    setAssetCurrentLimit: TypedContractMethod<[
+        limit: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    setRsETHAmountToMint: TypedContractMethod<[], [void], "nonpayable">;
+    setminAmountToDeposit: TypedContractMethod<[
+        min: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    setrsETHAmountToMint: TypedContractMethod<[
+        toMint: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "assetCurrentLimit"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "depositAsset"): TypedContractMethod<[
+        arg0: AddressLike,
+        arg1: BigNumberish,
+        arg2: BigNumberish,
+        arg3: string
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "getAssetCurrentLimit"): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "getRsETHAmountToMint"): TypedContractMethod<[
+        arg0: AddressLike,
+        arg1: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "minAmountToDeposit"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "rsETH"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "setAssetCurrentLimit"): TypedContractMethod<[limit: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "setRsETHAmountToMint"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "setminAmountToDeposit"): TypedContractMethod<[min: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "setrsETHAmountToMint"): TypedContractMethod<[toMint: BigNumberish], [void], "nonpayable">;
+    filters: {};
+}
+//# sourceMappingURL=KelpMock.d.ts.map

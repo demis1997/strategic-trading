@@ -1,0 +1,83 @@
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../common";
+export interface OneInchV6MockInterface extends Interface {
+    getFunction(nameOrSignature: "swap"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "SwapExecuted"): EventFragment;
+    encodeFunctionData(functionFragment: "swap", values: [
+        AddressLike,
+        AddressLike,
+        AddressLike,
+        BigNumberish,
+        BigNumberish,
+        BytesLike
+    ]): string;
+    decodeFunctionResult(functionFragment: "swap", data: BytesLike): Result;
+}
+export declare namespace SwapExecutedEvent {
+    type InputTuple = [
+        sender: AddressLike,
+        srcToken: AddressLike,
+        dstToken: AddressLike,
+        amount: BigNumberish,
+        returnAmount: BigNumberish
+    ];
+    type OutputTuple = [
+        sender: string,
+        srcToken: string,
+        dstToken: string,
+        amount: bigint,
+        returnAmount: bigint
+    ];
+    interface OutputObject {
+        sender: string;
+        srcToken: string;
+        dstToken: string;
+        amount: bigint;
+        returnAmount: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export interface OneInchV6Mock extends BaseContract {
+    connect(runner?: ContractRunner | null): OneInchV6Mock;
+    waitForDeployment(): Promise<this>;
+    interface: OneInchV6MockInterface;
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    swap: TypedContractMethod<[
+        caller: AddressLike,
+        srcToken: AddressLike,
+        dstToken: AddressLike,
+        amount: BigNumberish,
+        minReturn: BigNumberish,
+        data: BytesLike
+    ], [
+        bigint
+    ], "payable">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "swap"): TypedContractMethod<[
+        caller: AddressLike,
+        srcToken: AddressLike,
+        dstToken: AddressLike,
+        amount: BigNumberish,
+        minReturn: BigNumberish,
+        data: BytesLike
+    ], [
+        bigint
+    ], "payable">;
+    getEvent(key: "SwapExecuted"): TypedContractEvent<SwapExecutedEvent.InputTuple, SwapExecutedEvent.OutputTuple, SwapExecutedEvent.OutputObject>;
+    filters: {
+        "SwapExecuted(address,address,address,uint256,uint256)": TypedContractEvent<SwapExecutedEvent.InputTuple, SwapExecutedEvent.OutputTuple, SwapExecutedEvent.OutputObject>;
+        SwapExecuted: TypedContractEvent<SwapExecutedEvent.InputTuple, SwapExecutedEvent.OutputTuple, SwapExecutedEvent.OutputObject>;
+    };
+}
+//# sourceMappingURL=OneInchV6Mock.d.ts.map
