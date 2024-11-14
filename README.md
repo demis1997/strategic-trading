@@ -1,6 +1,4 @@
-# [YGRO PROTOCOL](#ygro-protocol)
 
-===>>>>  DESCRIPTION NEEDED by Ygro
 
 &nbsp;
 
